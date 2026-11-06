@@ -1,0 +1,354 @@
+/* Modern modal styles for admin modals (edit room, etc.) */
+.modal-content {
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 32px rgba(30, 41, 59, 0.18), 0 1.5px 6px rgba(30, 41, 59, 0.08);
+  border: none;
+  background: #fff;
+}
+.modal-header {
+  border-radius: 1.5rem 1.5rem 0 0 !important;
+  background: linear-gradient(90deg, #667eea 0%, #5a67d8 100%);
+  color: #fff;
+  border: none;
+  padding-top: 1.25rem;
+  padding-bottom: 1rem;
+}
+.modal-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.modal-body {
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+}
+.modal-footer {
+  border-radius: 0 0 1.5rem 1.5rem !important;
+  background: #f8f9fa;
+  border: none;
+  padding-bottom: 1.25rem;
+  padding-top: 1rem;
+}
+.form-label {
+  font-weight: 600;
+  color: #374151;
+}
+.form-control, .form-select {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: #f9fafb;
+  transition: border-color 0.2s;
+}
+.form-control:focus, .form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px #c7d2fe;
+}
+.btn-primary, .btn-warning, .btn-secondary {
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #667eea 0%, #5a67d8 100%);
+  border: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, #5a67d8 0%, #667eea 100%);
+}
+.btn-warning {
+  background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+  color: #fff;
+  border: none;
+}
+.btn-warning:hover {
+  background: linear-gradient(90deg, #38a169 0%, #48bb78 100%);
+  color: #fff;
+}
+.btn-close-white {
+  filter: invert(1);
+}
+@media (max-width: 576px) {
+  .modal-body {
+    padding: 1.25rem 0.75rem 1rem 0.75rem;
+  }
+}
+:root {
+    --primary: #5e72e4;
+    --secondary: #f7fafc;
+    --dark: #1a202c;
+    --light: #fff;
+    --danger: #e53e3e;
+    --success: #48bb78;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+}
+
+.sidebar {
+    background: var(--dark);
+    color: var(--light);
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background: var(--primary);
+    color: var(--light);
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background: var(--primary);
+    color: var(--light);
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table th {
+    background-color: var(--secondary);
+    font-weight: 600;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.badge-primary {
+    background-color: var(--primary);
+}
+
+.badge-success {
+    background-color: var(--success);
+}
+
+.badge-danger {
+    background-color: var(--danger);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-profile img {
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: 600;
+    margin: 0;
+}
+
+.user-role {
+    font-size: 12px;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding-left: 35px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    color: #a0aec0;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary);
+}
+
+.action-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.booking-details {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 50px;
+    color: #a0aec0;
+}
+
+.no-data i {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.stats-card {
+    border-left: 4px solid var(--primary);
+}
+
+.stats-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.stats-card p {
+    color: #718096;
+    margin-bottom: 0;
+}
+.room-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.room-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.room-number h5 {
+  font-weight: 600;
+  color: #333;
+}
+
+.room-guest {
+  font-size: 0.9rem;
+}
+
+.room-dates {
+  font-size: 0.8rem;
+}
+
+.room-card.border-success {
+  border-left: 4px solid #28a745 !important;
+}
+
+.room-card.border-primary {
+  border-left: 4px solid #007bff !important;
+}
+
+.room-card.border-warning {
+  border-left: 4px solid #ffc107 !important;
+}
+
+/* Added styles for clickable room cards and modal enhancements */
+.clickable-room {
+  position: relative;
+}
+
+.clickable-room::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 123, 255, 0.05);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 0.375rem;
+}
+
+.clickable-room:hover::after {
+  opacity: 1;
+}
+
+.clickable-room:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-bottom: none;
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+/* Safety: prevent stale modal backdrops from blocking clicks when no modal is shown */
+body:not(.modal-open) .modal-backdrop {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Safety: neutralize stale SweetAlert2 containers and v1 overlays when not showing */
+body:not(.swal2-shown) .swal2-container {
+  pointer-events: none !important;
+}
+.swal2-container[aria-hidden="true"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+.swal-overlay:not(.swal-overlay--show-modal) {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+

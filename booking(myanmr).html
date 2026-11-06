@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE Hotel Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="Homepage.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <!-- Added main navigation bar with hotel branding and navigation links -->
+    <nav>
+        <div class="nav__bar">
+            <div class="nav__header">
+                <div class="logo nav__logo">
+                    <div>H</div>
+                    BookWIthUs
+                </div>
+                <div style="margin-left:auto; margin-right:16px;">
+                    <select id="langSelect" class="form-select form-select-sm w-auto">
+                        <option value="en">English</option>
+                        <option value="my">မြန်မာ</option>
+                    </select>
+                </div>
+                <div class="nav__menu__btn" id="menu-btn">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+
+            <ul class="nav__links" id="nav-links">
+                <li><a href="Homepage.html">မူလစာမျက်နှာ</a></li>
+                <li><a href="Homepage.html">အကြောင်း</a></li>
+                <li><a href="Homepage.html">အထူး</a></li>
+                <li><a href="Homepage.html">ဆက်သွယ်ရန်</a></li>
+                <li><a href="Login.html">ထွက်ရန်</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Inline language scripts moved to booking.js -->
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header" id="user-info">
+            <h2>LUXE ဟိုတယ်</h2>
+        </div>
+        <ul class="sidebar-menu nav no-print nav-tabs">
+            <li class="nav-item">
+                <a href="#booking" class="nav-link active tab-btn" data-bs-toggle="tab">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>စာရင်းများ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#rooms" class="nav-link tab-btn" data-bs-toggle="tab">
+                    <i class="fas fa-hotel"></i>
+                    <span>အခန်းများ (ရရှိနိုင်)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="tab-content">
+            <div class="tab-pane active search-pane container-fluid mt-3" id="booking">
+                <div class="row no-print my-5">
+                    <!-- Stats Cards -->
+                </div>
+                <div class="card recent-bookings">
+                    <div class="card-header">
+                        <h1>စာရင်းများ (အားလုံး)</h1>
+                        <button data-bs-toggle="modal" data-bs-target="#registration-modal"
+                            class="nav-link btn action-btn b-book-btn">
+                            <i class="fas fa-plus"></i> စာရင်းအသစ်
+                        </button>
+                        <div class="col-md-4 text-center">
+                            <button class="btn action-btn print-btn">
+                                <i class="fas fa-print me-2"></i> မိတ္တူထုတ်မည်
+                            </button>
+                        </div>
+                    </div>
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th class="no-print">စဉ်</th>
+                                <th class="text-nowrap">ဟိုတယ်</th>
+                                <th class="text-nowrap">အခန်းနံပါတ်</th>
+                                <th class="text-nowrap">အမည်</th>
+                                <th class="text-nowrap">ရောက်သည့် ရက်</th>
+                                <th class="text-nowrap">ထွက်သည့် ရက်</th>
+                                <th class="text-nowrap">လူရေ</th>
+                                <th class="text-nowrap">ဖုန်း</th>
+                                <th class="text-nowrap">စျေးနှုန်း</th>
+                                <th class="text-nowrap">ငွေပေးချေမှုပုံစံ</th>
+                                <th class="no-print">လုပ်ဆောင်ချက်</th>
+                            </tr>
+                        </thead>
+                        <tbody class="booking-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane search-pane container-fluid mt-3" id="inhouse">
+                <div class="card recent-bookings">
+                    <div class="card-header">
+                        <h1>အခန်းတွင်း အချက်အလက်များ</h1>
+                        <button data-bs-toggle="modal" data-bs-target="#inhouse-modal"
+                            class="nav-link btn action-btn in-house-reg-btn">
+                            <i class="fas fa-plus"></i> စာရင်းအသစ်
+                        </button>
+                        <div class="col-md-4 text-center">
+                            <button class="btn action-btn print-btn">
+                                <i class="fas fa-print me-2"></i> မိတ္တူထုတ်မည်
+                            </button>
+                        </div>
+                    </div>
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                               <th class="no-print">စဉ်</th>
+                                <th class="text-nowrap">ဟိုတယ်</th>
+                                <th class="text-nowrap">အခန်းနံပါတ်</th>
+                                <th class="text-nowrap">အမည်</th>
+                                <th class="text-nowrap">ရောက်သည့် ရက်</th>
+                                <th class="text-nowrap">ထွက်သည့် ရက်</th>
+                                <th class="text-nowrap">လူရေ</th>
+                                <th class="text-nowrap">ဖုန်း</th>
+                                <th class="text-nowrap">စျေးနှုန်း</th>
+                                <th class="text-nowrap">ငွေပေးချေမှုပုံစံ</th>
+                                <th class="no-print">လုပ်ဆောင်ချက်</th>
+                            </tr>
+                        </thead>
+                        <tbody class="inhouse-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane search-pane container-fluid mt-3" id="rooms">
+                <div class="row no-print my-5">
+                    <div class="page-header">
+                        <h1>အခန်း ရရှိနိုင်မှု</h1>
+                        <div class="date-display">
+                            <i class="fas fa-calendar-day"></i>
+                            <span id="current-date"></span>
+                        </div>
+                    </div>
+
+                    <!-- Room Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="icon-box bg-primary">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalRoomsCount">0</h3>
+                                <p>စုစုပေါင်း အခန်းများ</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="availableRoomsCount">0</h3>
+                                <p>ရရှိနိုင်သော အခန်းများ</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-warning">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="bookedRoomsCount">0</h3>
+                                <p>ဘွတ်ကင်တင်ထားသော အခန်းများ</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-info">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Status Grid -->
+                <div class="card recent-bookings">
+                    <div class="card-header">
+                        <h1>အခန်း အခြေအနေ အကြည့်အမြင်</h1>
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <!-- Added hotel filter dropdown -->
+                            <div class="d-flex align-items-center gap-2">
+                                <label for="hotelFilter" class="form-label mb-0 fw-bold">ဟိုတယ်:</label>
+                                <select id="hotelFilter" class="form-select" style="min-width: 200px;">
+                                    <option value="">ဟိုတယ်များ</option>
+                                    <option value="Shwe Nan Htike">Shwe Nan Htike</option>
+                                    <option value="Auream Palace">Auream Palace</option>
+                                    <option value="Hotel Pyin Oo Lwin">Hotel Pyin Oo Lwin</option>
+                                </select>
+                            </div>
+                            <div class="search-bar" style="flex: 1; max-width: 300px;">
+                                <i class="fas fa-search"></i>
+                                <input type="search" id="roomSearchInput" class="search-input"
+                                    placeholder="ဟိုတယ်အမည် သို့မဟုတ် ခန်းနံပါတ်ဖြင့် ရှာဖွေပါ...">
+                            </div>
+                            <div class="d-flex gap-3">
+                                <span class="badge bg-success">Available</span>
+                                <span class="badge bg-primary">Booked</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="roomGrid" class="row g-3">
+                            <!-- Room cards will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Updated booking modal with enhanced styling -->
+    <div class="modal animate__animated animate__zoomIn" id="registration-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Register Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="body-body p-4">
+                    <form class="booking-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input name="fullname" type="text" placeholder="FullName" class="mb-3 form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <select name="hotel" class="mb-3 form-control" required>
+                                    <option value="">Select Hotel</option>
+                                    <option value="Shwe Nan Htike">Shwe Nan Htike</option>
+                                    <option value="Auream Palace">Auream Palace</option>
+                                    <option value="Hotel Pyin Oo Lwin">Hotel Pyin Oo Lwin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <select name="roomNo" class="mb-3 form-control" required>
+                                    <option value="">Select Room</option>
+                                </select>
+                                <div class="room-validation-msg text-danger small mt-1" style="display: none;"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="totalPeople" type="number" placeholder="Total People"
+                                    class="mb-3 form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label>Check In Date</label>
+                                <input name="checkInDate" type="date" class="mb-3 form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Check Out Date</label>
+                                <input name="checkOutDate" type="date" class="mb-3 form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <input name="price" type="number" placeholder="Price" class="mb-3 form-control"
+                                    readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="mobile" type="number" placeholder="mobile" class="mb-3 form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <select name="paymentMethod" class="mb-3 form-control" required>
+                                    <option value="">Select Payment Method</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="Digital Wallet">Digital Wallet</option>
+                                    <option value="Check">Check</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <button type="submit" id="bookingSubmitBtn" class="btn action-btn text-black text-center">BOOK</button>
+                            <button type="button" id="bookingUpdateBtn" class="btn action-btn text-white d-none" style="background:#d9534f;">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="booking.js"></script>
+</body>
+
+</html>

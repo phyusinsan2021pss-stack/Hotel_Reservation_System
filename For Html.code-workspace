@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../For Python"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "For Html"
+	}
+}

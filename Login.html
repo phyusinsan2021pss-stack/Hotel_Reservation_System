@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="fontAwsome.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="sweetalert.js"></script>
+    <script src="bootstrap.bundle.js"></script>
+    <title>Login Page</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <img src="miit.jpg" width="60" class="rounded-circle" alt="">
+            <a href="entry.html" class="mx-4 text-white navbar-brand">MIIT Hotel Reservation System</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>  
+            <!-- Language selector -->
+            <div class="d-flex align-items-center ms-auto me-3">
+                <select id="langSelect" class="form-select form-select-sm w-auto">
+                    <option value="en" selected>English</option>
+                    <option value="my">မြန်မာ</option>
+                </select>
+            </div>
+            <div class="navbar-collapose" id="myMenu">
+                <div>
+                    <button id="preview-btn" class="btn btn-outline-primary w-100">Preview as Guest</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="container">
+        <div class="form-container">
+            <!-- Login Form -->
+            <div class="sign-in">
+                <h2>Login</h2>
+                <form class="login-form">
+                    <input required type="email" placeholder="Email" class="mb-3 form-control">
+                    <input required type="password" placeholder="Password" class="mb-3 form-control">
+                    <button type="submit" class="btn btn-primary w-100 butt">Login</button>
+                </form>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="sign-up">
+                <h2>Registration</h2>
+                <form class="reg-form">
+                    <div class="mb-3 form-field">
+                        <input required name="fullname" type="text" placeholder="Full Name" class="form-control">
+                        <div class="field-error" data-error-for="fullname"></div>
+                    </div>
+                    <div class="mb-3 form-field">
+                        <input required name="mobile" type="tel" inputmode="numeric" maxlength="11" placeholder="Phone Number" autocomplete="tel" class="form-control">
+                        <div class="field-error" data-error-for="mobile"></div>
+                    </div>
+                    <div class="mb-3 form-field">
+                        <input required name="email" type="email" placeholder="Email" class="form-control">
+                        <div class="field-error" data-error-for="email"></div>
+                    </div>
+                    <div class="mb-3 form-field">
+                        <input required name="password" type="password" placeholder="Password" class="form-control">
+                        <div class="field-error" data-error-for="password"></div>
+                    </div>
+                    <label class="form-label">Register as</label>
+                    <select name="role" class="form-select mb-3">
+                        <option value="user" selected>User</option>
+                        <option value="admin">Admin (request)</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary w-100 butt">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Panel -->
+        <div class="toggle-container" id="toggle-container">
+            <div>
+                <h2 id="toggle-title">Hello, Welcome!</h2>
+                <p id="toggle-desc">Don't have an account?</p>
+                <button id="toggle-btn">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline scripts moved to login.js -->
+    <script src="js/apiClient.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

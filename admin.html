@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hotel Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="Admin.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar p-0">
+                <div class="user-profile">
+                    <img src="img/default-user.svg" alt="User" class="user-img">
+                    <div>
+                        <h6 class="username">Administrator</h6>
+                        <p class="user-role">Super Admin</p>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <select id="langSelect" class="form-select form-select-sm">
+                        <option value="en">English</option>
+                        <option value="my">မြန်မာ</option>
+                    </select>
+                </div>
+                <div class="p-3">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary w-100 text-start" id="adminNotificationsBtn"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i> Notifications <span class="badge bg-danger"
+                                id="adminNotificationCount">0</span>
+                        </button>
+                        <ul class="dropdown-menu p-2" aria-labelledby="adminNotificationsBtn"
+                            id="adminNotificationsList" style="min-width:250px;">
+                            <li class="text-muted">No notifications</li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="nav flex-column p-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" id="userAccountsLink">
+                            <i class="fas fa-users"></i> User Accounts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" id="roomsLink">
+                            <i class="fas fa-hotel"></i> Rooms
+                        </a>
+                    </li>
+                    <!-- User Input feature removed -->
+                    <li class="nav-item mt-3">
+                        <a class="nav-link text-danger logout-btn" href="javascript:void(0)">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <!-- Admin toolbar -->
+                <div class="admin-toolbar p-3 border-bottom mb-3">
+                    <button id="showRoomsBtn" class="btn btn-outline-primary me-2"><i class="fas fa-hotel"></i> Room
+                        Management</button>
+                    <button id="showCatalogBtn" class="btn btn-outline-secondary"><i class="fas fa-list"></i> Room
+                        Catalog</button>
+                </div>
+                <!-- Rooms Section -->
+                <div id="roomsSection" class="d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">Room Management</h4>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" placeholder="Search rooms..." id="roomSearchInput">
+                        </div>
+                    </div>
+
+                    <!-- Room Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="totalRooms">0</h3>
+                                    <p>Total Rooms</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="availableRooms">0</h3>
+                                    <p>Available</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="bookedRooms">0</h3>
+                                    <p>Booked</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="inhouseRooms">0</h3>
+                                    <p>InHouse</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room Status Grid -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Room Status Overview</h5>
+                            <div class="d-flex align-items-center gap-3">
+                                <!-- Added hotel filter dropdown -->
+                                <div class="d-flex align-items-center gap-2">
+                                    <label for="adminHotelFilter" class="form-label mb-0 fw-bold">Hotel:</label>
+                                    <select id="adminHotelFilter" class="form-select" style="min-width: 200px;">
+                                        <option value="All Hotels">All Hotels</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <label class="form-label mb-0 fw-bold">Dates:</label>
+                                    <input type="date" id="checkInFilter" class="form-control form-control-sm"
+                                        style="max-width:160px">
+                                    <input type="date" id="checkOutFilter" class="form-control form-control-sm"
+                                        style="max-width:160px">
+                                    <button id="applyDateFilter" class="btn btn-sm btn-primary">Apply</button>
+                                    <button id="clearDateFilter" class="btn btn-sm btn-secondary ms-1">Clear</button>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <span class="badge bg-success">Available</span>
+                                    <span class="badge bg-primary">Booked</span>
+                                    <span class="badge bg-warning">InHouse</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="roomGrid" class="row g-3">
+                                <!-- Room cards will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room Catalog Management -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <!-- Inline add form: quick add hotel/room without modal -->
+                            <div class="mb-3 p-2 border rounded bg-light">
+                                <form id="inlineCatalogForm" class="row g-2 align-items-end">
+                                    <div class="col-md-3">
+                                        <label class="form-label small">Hotel (existing or new)</label>
+                                        <select id="inlineHotelSelect" class="form-select">
+                                            <option value="">Select existing hotel</option>
+                                            <option value="__new__">-- Add New Hotel --</option>
+                                        </select>
+                                        <input id="inlineHotelNew" class="form-control mt-2" placeholder="New hotel name" style="display:none">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Room No</label>
+                                        <input id="inlineRoomNo" class="form-control" type="text" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Room Type</label>
+                                        <select id="inlineRoomType" class="form-select" required>
+                                            <option value="single">Single</option>
+                                            <option value="family">Family</option>
+                                            <option value="duo">Duo</option>
+                                            <option value="trio">Trio</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Room Class</label>
+                                        <select id="inlineRoomClass" class="form-select" required>
+                                            <option value="luxury">Luxury</option>
+                                            <option value="normal">Normal</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Price</label>
+                                        <input id="inlinePrice" class="form-control" type="number" required>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button id="inlineAddBtn" class="btn btn-primary w-100" type="submit">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Hotel</th>
+                                            <th>Rooms</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="roomCatalogTbody"></tbody>
+                                </table>
+                            </div>
+                            <!-- hotel rooms panel (shown when a hotel is selected) -->
+                            <div id="hotelRoomsContainer" class="mt-3 d-none">
+                                <h6 id="hotelRoomsTitle"></h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="hotelRoomsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Room No</th>
+                                                <th>Price</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="hotelRoomsTbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- All Rooms (aggregate) -->
+                            <div class="mt-4">
+                                <h6>All Rooms</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Hotel</th>
+                                                <th>Room No</th>
+                                                <th>Room Type</th>
+                                                <th>Room Class</th>
+                                                <th>Price</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="roomCatalogAllTbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Input feature removed from UI -->
+
+                <!-- Billing Section -->
+                <div id="billingSection" class="d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">Billing Management</h4>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" placeholder="Search bills..." id="billSearchInput">
+                        </div>
+                    </div>
+
+                    <!-- Billing Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="totalBills">0</h3>
+                                    <p>Total Bills</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="paidBills">0</h3>
+                                    <p>Paid Bills</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="pendingBills">0</h3>
+                                    <p>Pending Bills</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="overdueBills">0</h3>
+                                    <p>Overdue Bills</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Bills Table -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">User Account Bills</h5>
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-sync-alt me-1"></i> Updated just now
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Hotel</th>
+                                            <th>Room</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Due Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userBillsTable">
+                                        <!-- Bill data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Room Catalog Modal -->
+                            <div class="modal fade" id="roomCatalogModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Manage Room Catalog</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="roomCatalogForm">
+                                                <input type="hidden" id="catalogEditIndex">
+                                                <div class="mb-2">
+                                                    <label class="form-label">Hotel</label>
+                                                    <select id="catalogHotelSelect" class="form-select">
+                                                        <option value="">Select an existing hotel</option>
+                                                        <option value="__new__">-- Add New Hotel --</option>
+                                                    </select>
+                                                    <input id="catalogHotelNew" type="text" class="form-control mt-2"
+                                                        placeholder="New hotel name" style="display:none;">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label">Room No</label>
+                                                    <input id="catalogRoomNo" type="text" class="form-control"
+                                                        required>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label">Price</label>
+                                                    <input id="catalogPrice" type="number" class="form-control"
+                                                        required>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" id="catalogSaveBtn"
+                                                class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- scripts moved to admin.js for maintainability -->
+                            <!-- Admin Edit Booking Modal -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard Section -->
+                <div id="dashboardSection">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">User Accounts Management</h4>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" placeholder="Search users..." id="userSearchInput">
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="totalUsers">0</h3>
+                                    <p>Total Users</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="activeBookings">0</h3>
+                                    <p>Active Bookings</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <h3 id="totalRevenue">0</h3>
+                                    <p>Total Revenue</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Accounts Table -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">All User Accounts</h5>
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-sync-alt me-1"></i> Updated just now
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Bookings</th>
+                                            <th>Last Active</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userAccountsTable">
+                                        <!-- User data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Added missing userBookingsCard div and userNameTitle -->
+                    <div class="card d-none" id="userBookingsCard">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0" id="userNameTitle">User Bookings</h5>
+                            <button class="btn btn-secondary" id="backToUsersBtn">
+                                <i class="fas fa-arrow-left me-1"></i> Back to Users
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <!-- User Bookings Section -->
+                            <ul class="nav nav-tabs" id="bookingTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="booking-tab" data-bs-toggle="tab"
+                                        data-bs-target="#booking" type="button" role="tab">Booking</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="inhouse-tab" data-bs-toggle="tab"
+                                        data-bs-target="#inhouse" type="button" role="tab">InHouse</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="archive-tab" data-bs-toggle="tab"
+                                        data-bs-target="#archive" type="button" role="tab">Archive</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content pt-3" id="bookingTabsContent">
+                                <div class="tab-pane fade show active" id="booking" role="tabpanel">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Hotel</th>
+                                                    <th>Room No</th>
+                                                    <th>Full Name</th>
+                                                    <th>Check-In</th>
+                                                    <th>Check-Out</th>
+                                                    <th>Guests</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bookingTable">
+                                                <!-- Booking data will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="inhouse" role="tabpanel">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Hotel</th>
+                                                    <th>Room No</th>
+                                                    <th>Full Name</th>
+                                                    <th>Check-In</th>
+                                                    <th>Check-Out</th>
+                                                    <th>Guests</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="inhouseTable">
+                                                <!-- InHouse data will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="archive" role="tabpanel">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Hotel</th>
+                                                    <th>Room No</th>
+                                                    <th>Full Name</th>
+                                                    <th>Check-In</th>
+                                                    <th>Check-Out</th>
+                                                    <th>Guests</th>
+                                                    <th>Price $</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="archiveTable">
+                                                <!-- Archive data will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Details Modal -->
+    <div class="modal fade" id="roomDetailsModal" tabindex="-1" aria-labelledby="roomDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roomDetailsModalLabel">Room Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="roomDetailsContent">
+                    <!-- Room details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Room Modal (moved inside body for valid DOM) -->
+    <div class="modal fade" id="editRoomModal" tabindex="-1" aria-labelledby="editRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content shadow-lg rounded-4 border-0" style="padding:0.5rem 0;background:#fff;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="editRoomModalLabel">Edit Room</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-3">
+                    <form id="editRoomForm">
+                        <input type="hidden" id="editRoomHotel">
+                        <div class="mb-3">
+                            <label for="editRoomNo" class="form-label fw-semibold">Room No</label>
+                            <input type="text" class="form-control rounded-3" id="editRoomNo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRoomType" class="form-label fw-semibold">Room Type</label>
+                            <select class="form-select rounded-3" id="editRoomType" required>
+                                <option value="single">Single</option>
+                                <option value="family">Family</option>
+                                <option value="duo">Duo</option>
+                                <option value="trio">Trio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRoomClass" class="form-label fw-semibold">Room Class</label>
+                            <select class="form-select rounded-3" id="editRoomClass" required>
+                                <option value="luxury">Luxury</option>
+                                <option value="normal">Normal</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRoomPrice" class="form-label fw-semibold">Price</label>
+                            <input type="number" class="form-control rounded-3" id="editRoomPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRoomStatus" class="form-label fw-semibold">Status</label>
+                            <select class="form-select rounded-3" id="editRoomStatus" required>
+                                <option value="active">Active</option>
+                                <option value="service">Service</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 fw-bold" id="saveEditRoomBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/apiClient.js"></script>
+    <script src="admin.js"></script>
+    <script src="js/adminRoomsApi.js"></script>
+</body>
+
+</html>

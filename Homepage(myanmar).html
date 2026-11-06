@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="booking.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Padauk:wght@400;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert.js"></script>
+  <link rel="stylesheet" href="Homepage.css" />
+  <title>Hotel Booking</title>
+</head>
+
+<body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__content">
+      <div class="page-loader__logo">
+        <span class="page-loader__initial">B</span>
+        <span class="page-loader__name">BookWithUs</span>
+      </div>
+      <div class="page-loader__ring">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <div class="nav__bar">
+      <div class="nav__header">
+        <div class="logo nav__logo">
+          <div>B</div>
+          BookWIthUs
+        </div>
+        <!-- language selector -->
+        <div class="nav__language">
+          <select id="langSelect" class="form-select form-select-sm w-auto">
+            <option value="en">English</option>
+            <option value="my" selected>မြန်မာ</option>
+          </select>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-toggle" onclick="toggleDropdown()">ရွေးချယ်ပါ...<i class="fas fa-caret-down"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#" onclick="showPage('home')"><i class=""></i> မူလစာမျက်နှာ</a>
+          <a href="#" onclick="showPage('pyin-oo-lwin')"><i class=""></i> Hotel Pyin Oo Lwin</a>
+          <a href="#" onclick="showPage('auream-palace')"><i class=""></i> Auream Palace</a>
+          <a href="#" onclick="showPage('shwe-nan-htike')"><i class=""></i> Shwe Nan Htike</a>
+        </div>
+      </div>
+
+  <ul class="nav__links" id="nav-links">
+  <li><a href="#" onclick="showPage('home', event)">မူလစာမျက်နှာ</a></li>
+  <li><a href="#about">အကြောင်းအရာ</a></li>
+  <li><a href="#feature">ထူးခြားချက်</a></li>
+  <li><a href="#contact">ဆက်သွယ်ရန်</a></li>
+  <li><a href="Login.html">အကောင့်ထွက်ရန်</a></li>
+        <li style="position:relative;">
+          <!-- Fixed spelling from catagory to category -->
+          <!--<a href="#" id="category-btn">အမျိုးအစား</a>-->
+          <div class="dropdown-menu" id="categoryDropdown"
+            style="display:none; position:absolute; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:100;">
+            <div style="position:relative;">
+              <a href="#" id="pool-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                ရေကူးကန် <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="poolDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('pyin-oo-lwin')">Hotel Pyin Oo Lwin</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+              </div>
+            </div> 
+            <div style="position:relative;">
+              <a href="#" id="restaurant-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                စားသောက်ဆိုင် <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="restaurantDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('pyin-oo-lwin')">Hotel Pyin Oo Lwin</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+                <a href="#" onclick="showPage('shwe-nan-htike')">Shwe Nan Htike</a>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <a href="#" id="spa-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                Spa <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="spaDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('shwe-nan-htike')">Hotel Shwe Nan Htike</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <a href="#" id="eventspace-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                ပွဲနေရာများ <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="eventspaceDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('shwe-nan-htike')">Hotel Shwe Nan Htike</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Floating sidebar user profile/settings button -->
+  <button data-bs-toggle="modal" data-bs-target="#userProfileModal" class="profile-btn sidebar-profile-btn" title="User Settings">
+    <i class="ri-user-settings-line"></i>
+  </button>
+
+
+  <div class="modal fade" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content shadow-lg rounded-4 border-0" style="padding:0.5rem 0;background:#fff;">
+        <div class="modal-header border-0 pb-0" style="border-radius:1.5rem 1.5rem 0 0; background: linear-gradient(90deg, #667eea 0%, #5a67d8 100%); color: #fff;">
+          <h5 class="modal-title fw-bold" id="userProfileModalLabel">အသုံးပြုသူ ဆက်တင်</h5>
+          <button type="button" class="btn-close btn-close-white" id="closeProfileModal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-4 py-3">
+          <form id="userProfileForm">
+            <div class="mb-3">
+              <label for="profileName" class="form-label fw-semibold">နာမည်</label>
+              <input type="text" class="form-control rounded-3" id="profileName" name="profileName" required>
+            </div>
+            <div class="mb-3">
+              <label for="profileEmail" class="form-label fw-semibold">အီးမေးလ်</label>
+              <input type="email" class="form-control rounded-3" id="profileEmail" name="profileEmail" required>
+            </div>
+            <div class="mb-3">
+              <label for="profilePassword" class="form-label fw-semibold"> စကားဝှက်အသစ်</label>
+              <input type="password" class="form-control rounded-3" id="profilePassword" name="profilePassword" placeholder="Leave blank to keep current password">
+            </div>
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-primary rounded-pill fw-bold">ပြောင်းလဲသိမ်းဆည်းသည်။</button>
+              <button type="button" id="requestAdminBtn" class="btn btn-warning rounded-pill fw-bold">တောင်းဆိုမှု လက်ခံသည်။</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Inline language and link mapping moved to Homepage.js -->
+
+  <!-- Main Content Container -->
+  <div id="main-content">
+
+    <!-- Home Page Content -->
+    <div id="home-page" class="page-content active">
+      <!-- Made ID unique for home page header -->
+      <header class="header" id="home-main"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/view7.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>သင့်အတွက် အကောင်းဆုံး ရွေးချယ်စရာ</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">စာရင်းသွင်းရန်</a>
+        </div>
+      </header>
+
+           <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/view2.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>Hotel<br />Auream Palace</h1>
+          <a href="#" onclick="showPage('auream-palace')" class="btn">ကြည့်ရန်</a>
+        </div>
+      </header>
+
+      <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Shwe Nan Htike/view1.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>Hotel<br />Shwe Nan Htike</h1>
+          <a href="#" onclick="showPage('shwe-nan-htike')" class="btn">ကြည့်ရန်</a>
+        </div>
+      </header>
+
+      <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('hotel pyin oo lwin/view4.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>Hotel<br />Pyin Oo Lwin</h1>
+          <a href="#" onclick="showPage('pyin-oo-lwin')" class="btn">ကြည့်ရန်</a>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/indoor swimming pool.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>အဖွဲအစည်း</h4>
+              <p>
+                ဧည့်ဝတ်ကျေပွန်မှု ထူးချွန်ပြီး သင်၏ PerfeUnlockingct ရှိနေစေရန် အာမခံပါသည်။
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Shwe Nan Htike/restaurants2.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>ဇိမ်ခံအခန်းများ</h4>
+              <p>ကျွန်ုပ်တို့၏ ခမ်းနားသော ဇိမ်ခံအခန်းများတွင် တုနှိုင်းမဲ့ ဇိမ်ခံမှုကို ခံစားလိုက်ပါ။</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">အကြောင်းအရာ</p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏နောက်ခံအကြောင်းအရာ</h2>
+            <p class="section__description">
+              ကျွန်ုပ်တို၏ဟိုတယ်မှ ကြိုဆိုပါတယ်။
+              ဇိမ်ခံမှု၊ သက်တောင့်သက်သာနှင့် စွန့်စားခန်းတို ပေါင်းစည်းကာ ကျွန်ုပ်တို၏ဟိုတယ်မှ ဝမ်းပန်းတသာဖိတ်ခေါ်ပါတယ်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏ဇိမ်ခံနေရာနှင့်တွေ့ဆုံပါ။</h2>
+            <p class="section__description">
+             သက်တောင့်သက်သာနဲ့ သီးသန့် နေထိုင်လိုပါသလား ဒါမှမဟုတ် မိသားစုနဲ့အတူစိတ်ချမ်းမြေ့ဖွယ်နေရာထိုင်ခင်းရှာနေပါသလား။ 
+        ကျွန်ုပ်တို၏ဟိုတယ်မှ နွေးထွေးစွာကြိုဆိုပါ၏။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">ပါဝင်သောအခန်းကဏ္ဍများ</p>
+        <h2 class="section__header"> အဓိကပါဝင်မှုများ</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>ဝန်ဆောင်မှုကောင်းမွန်ခြင်း</h4>
+            <p>
+            ကျွန်တော်တိုဟိုတယ်သည် ဝန်ဆောင်မှူကောင်းမွန်ခြင်းကြောင့် များစွာသောဧည့်သည်များထံမှ ကောင်းမွန်သော မှတ်ချက်အများအပြားလက်ခံရရှိထားပါတယ်
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>တိတ်”ဆိတ်”ရှိခြင်း</h4>
+            <p>
+              လူဦးရေထူထပ်သော မြိုလည်ခေါင်တွင်မဟုတ်သောကြောင့် တိတ်တိတ်ဆိတ်ဆိတ်နေလိုသူများအတွက်လည်း ကောင်းမွန်သောရွေးချယ်မှုတခုဖြစ်ပေသည်။
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်း</h4>
+            <p>
+              မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်းကြောင့် မြိုထဲသိုသွားလာရလွယ်ကူခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>အခမဲ့ဘွတ်ကင်ဖျက်သိမ်းခြင်း</h4>
+            <p>
+              အကြောင်းအမျိုးမျိုးကြောင့် ဘွတ်ကင်တင်ထားသည်ကိုဖျက်သိမ်းလိုပါက အခမဲ့ဖျက်သိမ်း၍ရခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>ငွေပေးချေမှုနည်းလမ်းရွေးချယ်နိုင်ခြင်း</h4>
+            <p>
+              ငွေသားအပြင်အခြား(ဘဏ်ကဒ်၊ချက်လက်မှတ်များ၊မိုဘိုင်းအက်ပ်များ)ဖြင့်ငွေပေးချေနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>အထူးဝန်ဆောင်မှုများ</h4>
+            <p>
+             ရင်ခုန်စရာ ခရီးထွက်ဖို့ပဲဖြစ်ဖြစ်၊ အလုပ်ကိစ္စနဲ့ ခရီးထွက်ဖို့ စီစဉ်နေတာပဲဖြစ်ဖြစ်၊
+              ဂရုတစိုက်ရွေးချယ်ထားသော အထူးကမ်းလှမ်းချက်များသည် သင့်လိုအပ်ချက်အားလုံးကို ဖြည့်ဆည်းပေးသည်။
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>B</div>
+              <span><br />BookWithUs</span>
+            </div>
+            <p class="section__description">
+              "BookWithUs" ဘွတ်ကင်ဝန်ဆောင်မှုသည် သုံးစွဲသူများအား ရှာဖွေရန် အဆင်ပြေသော ပလပ်ဖောင်းတစ်ခု ပံ့ပိုးပေးသည်၊
+              နှိုင်းယှဥ်ပါ။
+              ၎င်းတို့၏ စိတ်ကြိုက် နှင့် ဘတ်ဂျက်ပေါ် မူတည်၍ တည်းခိုရန်။ အသုံးပြုသူများအား ဟိုတယ်များအလိုက် ကြည့်ရှုရန် ခွင့်ပြုသည်။
+              တည်နေရာ၊ ဈေးနှုန်း၊သာယာအဆင်ပြေမှုများ၊ နှင့် အဆင့်သတ်မှတ်ချက်များသည် ၎င်းတို့၏နေထိုင်မှုအတွက် အသင့်တော်ဆုံးရွေးချယ်မှုကို ရှာတွေ့ကြောင်းသေချာစေပါသည်။ ဟိ
+              ဝန်ဆောင်မှုကို ရိုးရှင်းစေသည်။
+              ကြိုတင်စာရင်းသွင်းခြင်းလုပ်ငန်းစဉ်၊ ချက်ချင်းအတည်ပြုခြင်းနှင့် လုံခြုံသောငွေပေးချေမှုရွေးချယ်စရာများကို ကမ်းလှမ်းခြင်း။
+              ခရီးသွားအစီအစဉ်
+              ပိုလွယ်ပြီး ပိုစိတ်ချရတယ်။
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>ဝန်ဆောင်မှုများ</h4>
+            <div class="footer__links">
+              <li><a href="#">အွန်လိုင်းဘွတ်ကင်လုပ်ခြင်း။</a></li>
+              <li><a href="#">Concierge ဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#">Customerပံ့ပိုးမှု</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>ဆက်သွယ်ရန်</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>ဖုန်းနံပါတ်</h5>
+                  <p>+95 9962758823</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>အီးမေးလ်</h5>
+                  <p>ayeminhan1432@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>တည်နေရာ</h5>
+                  <p>ပြင်ဦးလွင်</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Pyin Oo Lwin Page Content -->
+    <div id="pyin-oo-lwin-page" class="page-content">
+      <!-- Made ID unique for pyin-oo-lwin page header -->
+      <header class="header" id="pyin-oo-lwin-header" style="background: linear-gradient(rgba(15,26,44,0.5),
+        rgba(15,26,44,0.5)), url('hotel pyin oo lwin/view4.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>Hotel Pyin Oo Lwin</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">ဘွတ်ကင်တင်မည်</a>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/view2.webp" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>အဖွဲအစည်း</h4>
+              <p>
+               ဧည့်ဝတ်ကျေပွန်မှု ထူးချွန်ပြီး သင်၏ PerfeUnlockingct ရှိနေစေရန် အာမခံပါသည်။
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/view4.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>ဇိမ်ခံအခန်းများ</h4>
+              <p>ကျွန်ုပ်တို၏ ခမ်းနားသော ဇိမ်ခံအခန်းများတွင် တုနှိင်းမဲ့ ဇိမ်ခံမှုကို ခံစားလိုက်ပါ။</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">အကြောင်းအရာ</p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏နောက်ခံအကြောင်းအရာ</h2>
+            <p class="section__description">
+              ရွာလေးတစ်ရွာကို အတုယူကာ ပြင်ဦးလွင်ဟိုတယ်သည် ခေတ်မီသာယာအဆင်ပြေမှုများ၊ နွေးထွေးသောဝန်ဆောင်မှုနှင့် တည်နေရာကောင်းများနှင့်အတူ မြို့တွင်းနေထိုင်ရန် အကောင်းဆုံးနေရာတစ်ခုဟု ဆိုရမည်ပင်။
+            </p>
+            <p class="section__description">
+              ကျွန်းဘန်ဂလို ၃၆ လုံးသည် အလွန်ကျယ်ဝန်းပြီး သစ်သားပြားများ၊ ဂန္ထဝင်ပရိဘောဂများနှင့် မီးချောင်းများဖြင့် ရိုးရာအင်္ဂလိပ် 'ကလပ်အိမ်' စတိုင်ဖြင့် အလှဆင်ထားသည်။ အခမဲ့ WiFi ရရှိနိုင်ပြီး၊ သင့်တွင် ကိုယ်ပိုင် ဝရန်တာ ရှိပြီး အပူပေးရေကူးကန်၊ တရုတ်အစားအစာ၊ ဘားနှင့် အခမဲ့ ပြေးဆွဲပေးသည့် အိမ်တွင်းစားသောက်ဆိုင်လည်း ရှိပါသည်။
+            </p>
+            <p class="section__description">
+              ကျွန်ုပ်တို့သည် ပြင်ဦးလွင်တစ်ဝိုက်ရှိ ပုဂ္ဂလိကနှင့် စိတ်ပါဝင်စားစွာ ဦးဆောင်သော ခရီးစဉ်များနှင့် လှုပ်ရှားမှုများစွာကို ပေးဆောင်ပါသည်။ ဤနေရာတွင် သင်၏အချိန်ကို မည်သို့ဖြတ်သန်းလိုကြောင်းကို သင်၏ ခရီးသွား ဒီဇိုင်နာနှင့် ဆွေးနွေးပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="room__container" id="room">
+        <p class="section__subheader">အခန်းများ</p>
+        <h2 class="section__header">ပါဝင်သောအခန်းကဏ္ဍများ</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room1.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>တစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးတည်းနေထိုင်အပန်းဖြေသူများအတွက်တစ်ယောက်အိပ်အခန်းများ</p>
+              </div>
+              <h3>~$19<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>နှစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>~$29<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room4.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>သုံးယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>~$39<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room3.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>မိသားစုခန်း</h4>
+                <p>
+                 မိသားစုနဲ့အတူအပန်းဖြေသူများအတွက်မိသားစုအခန်းကြီးများ
+                </p>
+              </div>
+              <h3>~$49<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/restaurants3.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>စားသောက်ဆိုင် </h4>
+                <p>
+                 ဟိုတယ်နေသူများအဆင်ပြေစေရန်စားသောက်ဆိုင်များပါရှိသည်။
+                </p>
+              </div>
+              <h3> <span></span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/indoor swimming pool.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>ရေကူးကန်  </h4>
+                <p>
+                  ရေကူးကန်ကို မနက် ၈:၀၀ မှ ညနေ ၅:၀၀ အထိ အသုံးပြုနိုင်ပါသည်။
+                </p>
+              </div>
+              <h3>$20<span>/hour</span></h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏ဇိမ်ခံနေရာနှင့်တွေ့ဆုံပါ။</h2>
+            <p class="section__description">
+           သက်တောင့်သက်သာနဲ့ သီးသန့် နေထိုင်လိုပါသလား ဒါမှမဟုတ် မိသားစုနဲ့အတူစိတ်ချမ်းမြေ့ဖွယ်နေရာထိုင်ခင်းရှာနေပါသလား။ 
+        ကျွန်ုပ်တို၏ဟိုတယ်မှ နွေးထွေးစွာကြိုဆိုပါ၏။
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">ပါဝင်သောအခန်းကဏ္ဍများ</p>
+        <h2 class="section__header">အဓိကပါဝင်မှုများ</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>ဝန်ဆောင်မှုကောင်းမွန်ခြင်း</h4>
+            <p>
+             ကျွန်တော်တိုဟိုတယ်သည် ဝန်ဆောင်မှူကောင်းမွန်ခြင်းကြောင့် များစွာသောဧည့်သည်များထံမှ ကောင်းမွန်သော မှတ်ချက်အများအပြားလက်ခံရရှိထားပါတယ်
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>တိတ်”ဆိတ်”ရှိခြင်း</h4>
+            <p>
+              လူဦးရေထူထပ်သော မြိုလည်ခေါင်တွင်မဟုတ်သောကြောင့် တိတ်တိတ်ဆိတ်ဆိတ်နေလိုသူများအတွက်လည်း ကောင်းမွန်သောရွေးချယ်မှုတခုဖြစ်ပေသည်။
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်း</h4>
+            <p>
+             မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်းကြောင့် မြိုထဲသိုသွားလာရလွယ်ကူခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>အခမဲ့ဘွတ်ကင်ဖျက်သိမ်းခြင်း</h4>
+            <p>
+              အကြောင်းအမျိုးမျိုးကြောင့် ဘွတ်ကင်တင်ထားသည်ကိုဖျက်သိမ်းလိုပါက အခမဲ့ဖျက်သိမ်း၍ရခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>ငွေပေးချေမှုနည်းလမ်းရွေးချယ်နိုင်ခြင်း</h4>
+            <p>
+             ွေသားအပြင်အခြား(ဘဏ်ကဒ်၊ချက်လက်မှတ်များ၊မိုဘိုင်းအက်ပ်များ)ဖြင့်ငွေပေးချေနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>အထူးဝန်ဆောင်မှုများ</h4>
+            <p>
+             ရင်ခုန်စရာ ခရီးထွက်ဖို့ပဲဖြစ်ဖြစ်၊ အလုပ်ကိစ္စနဲ့ ခရီးထွက်ဖို့ စီစဉ်နေတာပဲဖြစ်ဖြစ်၊
+              ဂရုတစိုက်ရွေးချယ်ထားသော အထူးကမ်းလှမ်းချက်များသည် သင့်လိုအပ်ချက်အားလုံးကို ဖြည့်ဆည်းပေးသည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">မီနူး</p>
+              <h2 class="section__header">ရရှိနိုင်သောအစားအစာများ</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>ကြက်ဥနှင့်ဘေကွန်</h4>
+                <p>
+                  ကြက်ဥကိုအနည်းငယ်အရင်ကြော်ကာ ဘေကွန်နဲ့တွဲစားနိုင်သည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>လက်ဖက်ရည် သို့မဟုတ် ကော်ဖီ</h4>
+                <p>
+                  မေမြိုနှပ်ကော်ဖီ သို့မဟုတ် ရှမ်းပြည်ဒေသထွက် လ္ဘက်ခြောက်ဖြင့်ဖျော်စပ်ထားသောလ္ဘက်ရည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အုတ်ဂျုံဖြင့်ပြုလုပ်ထားသောအစားအစာများ</h4>
+                <p>
+                  ချီယာစေ့ကိုအုတ်ဂျုံထဲတွင်ထည့်သွင်းကာပြုလုပ်ထားသည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အသီးအရွက်သုပ်များ</h4>
+                <p>
+                 အသီးအရွက်သုပ်များ
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စတိတ်</h4>
+                <p>
+                  အသားများနူးအိစေရန် ဝိုင်ကိုအသုံးပြုကာချက်ပြုတ်ထားသောအစားအစာ(အမဲသား ၊ကြက်သား၊ဆယ်လမွန်ငါး)
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စပါကတီ</h4>
+                <p>
+                  ေခါက်ဆွဲသုပ်နှင့်အနည်းငယ်ဆင်သော ပြင်သစ်အစားအစာတမျိုး
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="hotel pyin oo lwin/bar1.webp" alt="menu" />
+            <img src="hotel pyin oo lwin/restaurants1.webp" alt="menu" />
+            <img src="hotel pyin oo lwin/restaurants2.webp" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>84k</h4>
+              <p>Projects are Completed</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Active Around World</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>02k</h4>
+              <p>Categories Served</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ရှုခင်းများ</h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view3.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>ဒေသထွက်အစားအစာများမြည်းစမ်းနိုင်ခြင်း</h4>
+            <p>
+              ရှမ်းပြည်ဒေသထွက်အစားအစာများမြည်းစမ်းကာ ရိုးရားယဉ်ကျေးမှုများလေ့လားစူးစမ်းနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view7.webp" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>ကျွန်ုပ်တို၏ဟိုတယ်တွင် စိတ်ရောကိုယ်ပါ အေးချမ်းစွာအပန်းဖြေနိုင်သည်။.</h4>
+            <p>
+              spa ကုသမှုများ၊ အထောက်အကူပြုပစ္စည်းများနှင့်စိတ်ကိုလန်းဆန်းစေသည်။
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view4.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>ဟိုတယ်အနီးအနားတွင်ရှိသောပြင်ပactivities များလည်းပါဝင်ဆင်နွှိုင်နိုင်ခြင်း</h4>
+            <p>
+            ေတာင်တက်ခြင်း၊ စက်ဘီးစီးကာရှူခင်းများခံစားနိုင်သည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Pyin Oo Lwin</span>
+            </div>
+            <p class="section__description">
+               Hotel Pyin Oo Lwin သည် မန္တလေးတိုင်းဒေသကြီး ပြင်ဦးလွင်မြိုလယ်တွင် တည်ရှိသော ကြယ် ၃ ပွင့်ဟိုတယ်ကြီးဖြစ်သည်။
+              သက်တောင့်သက်သာရှိသော အခန်းပေါင်း ၁၀ ခန်းဝန်းကျင်တွင် အခမဲ့ Wi-Fi၊ စားသောက်ဆိုင်၊ကားပါကင်များပါဝင်ပါသည်။ မြင်ကွင်းကျယ် နေဝင်ချိန် ရှုခင်းများပါရှိသော ခေါင်မိုးပေါ်ရှိ ဘားကြောင့်နာမည်ကြီးသောဟိုတယိတခုဖြစ်သည်။
+              စီးပွားရေးနှင့် အပန်းဖြေခရီးသွားများအတွက် ရွေးချယ်မှုကောင်းဖြစ်ပါသည်။
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>ဝန်ဆောင်မှုများ</h4>
+            <div class="footer__links">
+              <li><a href="Login&Signup.html">အွန်လိုင်းဘွတ်ကင်လုပ်ခြင်း။</a></li>
+              <li><a href="#room">အခန်းစိတ်ကြိုက်ပြင်ဆင်ခြင်း။</a></li>
+              <li><a href="#">Virtual Tours များ</a></li>
+              <li><a href="#feature">အထူးဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Concierge ဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Customer အထောက်အပံ့</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>ဆက်သွယ်ရန်</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>ဖုန်းနံပါတ်</h5>
+                  <p>+959 2040608</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>အီးမေးလ်</h5>
+                  <p>info@hotelpyinoolwin@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>တည်နေရာ</h5>
+                  <p>ပြင်ဦးလွင်</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Auream Palace Page Content -->
+    <div id="auream-palace-page" class="page-content">
+      <!-- Made ID unique for auream palace page header -->
+      <header class="header" id="auream-palace-header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/auream.webp') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">အကြောင်းအရာ</p>
+          <h1>Auream Palace</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">ဘွတ်ကင်တင်မည်</a>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="Auream Palace/view7.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>အဖွဲအစည်း</h4>
+              <p>
+                ဧည့်ဝတ်ကျေပွန်မှု ထူးချွန်ပြီး သင်၏ PerfeUnlockingct ရှိနေစေရန် အာမခံပါသည်။
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Auream Palace/view8.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>ဇိမ်ခံအခန်းများ</h4>
+              <p>ျွန်ုပ်တို၏ ခမ်းနားသော ဇိမ်ခံအခန်းများတွင် တုနှိင်းမဲ့ ဇိမ်ခံမှုကို ခံစားလိုက်ပါ။</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">အကြောင်းအရာ</p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏နောက်ခံအကြောင်းအရာ</h2>
+            <p class="section__description">
+              မန္တလေးမြို့၏အရှေ့ဘက် ၆၇ ကီလိုမီတာအကွာ မန္တလေးတောင်တန်းများပေါ်ရှိ မြန်မာနိုင်ငံအလယ်ပိုင်းတွင် တည်ရှိပြီး အေးမြသောရာသီဥတုရှိပြီး ဒုတိယကမ္ဘာစစ်မတိုင်မီအထိ ဗြိတိသျှတို့ နွေရာသီနေထိုင်ရာအဖြစ် အသုံးပြုခဲ့သည်။
+              စီးပွားရေးနှင့် အပန်းဖြေခရီးသွားများအတွက် ရွေးချယ်မှု။
+            </p>
+            <p class="section__description">
+              အမြင့် 1070 မီတာတွင်ရှိသော Aureum Palace Hotel & Resort သည် ပြင်ဦးလွင်တွင် နာမည်ကြီး Aureum သက်တောင့်သက်သာရှိမှုအားလုံးကို ပေးစွမ်းနိုင်သော ဥယျာဉ်ဘန်ဂလိုများသာမက မြန်မာနိုင်ငံတွင် ဗြိတိသျှဘုရင်ခံဟောင်း၏ လုံးလုံးလျားလျား ပြန်လည်တည်ဆောက်ထားသည့် နေအိမ်လည်းဖြစ်သည်။ တစ်ချိန်က အရာရှိများ၊ သခင်များနှင့် အမျိုးသမီးများသည် နွေရာသီအပူဒဏ်မှ ခိုလှုံရန် ကြိုးပမ်းခဲ့ကြရာ ယနေ့ခေတ်တွင် ညီလာခံများ၊ မင်္ဂလာဆောင်များနှင့် စီးပွားရေးတွေ့ဆုံပွဲများကို လွမ်းဆွတ်ဖွယ် ကိုလိုနီအသွင်ဖြင့် ကျင်းပကြသည်။ မန္တ​လေးမြို့က​နေ ခရီး​တွေ​တောင်​ သွားလည်​ရတာ တန်​တယ်​။ ပြင်ဦးလွင်သို့ မြွေပေါ်တက်စဉ် လမ်းကြောင်းတစ်ခုသာရှိသည်။
+            </p>
+            <p class="section__description">
+              ဇိမ်ခံဘန်ဂလိုများ၏ ခေတ်မီသော ဘန်ဂလိုများကို ခံစားရင်း ရာစုနှစ်တစ်ခု၏ ဖြတ်သန်းသွားသော ပတ်ဝန်းကျင်ကို တွေ့ကြုံခံစားနိုင်သည့် ပြိုင်ဘက်ကင်းသော ကိုလိုနီခေတ်ပုံစံဖြင့် အတိတ်၏ ကျက်သရေနှင့် ခမ်းနားမှုနှင့် ရိုးရာဇိမ်ခံမှုကို ခံစားလိုက်ပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="room__container" id="room">
+        <p class="section__subheader">ပါဝင်သောအခန်းကဏ္ဍများ</p>
+        <h2 class="section__header">အခန်းများ</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="Auream Palace/room1.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>တစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးတည်းနေထိုင်အပန်းဖြေသူများအတွက်တစ်ယောက်အိပ်အခန်းများ</p>
+              </div>
+              <h3>$399<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/room2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>နှစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>$399<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/room3.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>သုံးယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+        </p>
+              </div>
+              <h3>$599<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/room5.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>မိသားစုခန်း</h4>
+                <p>
+                  မိသားစုနဲ့အတူအပန်းဖြေသူများအတွက်မိသားစုအခန်းကြီးများ
+                </p>
+              </div>
+              <h3>$799<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/showers2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>စားသောက်ဆိုင် </h4>
+                <p>
+                  ဟိုတယ်နေသူများအဆင်ပြေစေရန်စားသောက်ဆိုင်များပါရှိသည်။
+                </p>
+              </div>
+              <h3> <span></span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/private-pool-villa.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>ရေကူးကန် </h4>
+                <p>
+                 ရေကူးကန်ကိုမနက်၈:၀၀ မှ ညနေ ၅:၀၀ အထိအသုံးပြုနိုင်ခြင်း
+                </p>
+              </div>
+              <h3>$200<span>/hour</span></h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ကျွန်ုပ်တို၏ဇိမ်ခံနေရာနှင့်တွေ့ဆုံပါ။</h2>
+            <p class="section__description">
+              သက်တောင့်သက်သာနဲ့ သီးသန့် နေထိုင်လိုပါသလား ဒါမှမဟုတ် မိသားစုနဲ့အတူစိတ်ချမ်းမြေ့ဖွယ်နေရာထိုင်ခင်းရှာနေပါသလား။ 
+              ကျွန်ုပ်တို၏ဟိုတယ်မှ နွေးထွေးစွာကြိုဆိုပါ၏။
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">ပါဝင်သောအခန်းကဏ္ဍများ</p>
+        <h2 class="section__header">အဓိကပါဝင်မှုများ</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>ဝန်ဆောင်မှုကောင်းမွန်ခြင်း</h4>
+            <p>
+              ကျွန်တော်တိုဟိုတယ်သည် ဝန်ဆောင်မှူကောင်းမွန်ခြင်းကြောင့် များစွာသောဧည့်သည်များထံမှ ကောင်းမွန်သော မှတ်ချက်အများအပြားလက်ခံရရှိထားပါတယ်
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>တိတ်”ဆိတ်”ရှိခြင်း</h4>
+            <p>
+             လူဦးရေထူထပ်သော မြိုလည်ခေါင်တွင်မဟုတ်သောကြောင့် တိတ်တိတ်ဆိတ်ဆိတ်နေလိုသူများအတွက်လည်း ကောင်းမွန်သောရွေးချယ်မှုတခုဖြစ်ပေသည်။
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>မြိုလည်ခေါင်တွင်တည်ရှိခြင်း</h4>
+            <p>
+              မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်းကြောင့် မြိုထဲသိုသွားလာရလွယ်ကူခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>အခမဲ့ဘွတ်ကင်ဖျက်သိမ်းခြင်း</h4>
+            <p>
+             အကြောင်းအမျိုးမျိုးကြောင့် ဘွတ်ကင်တင်ထားသည်ကိုဖျက်သိမ်းလိုပါက အခမဲ့ဖျက်သိမ်း၍ရခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>ငွေပေးချေမှုနည်းလမ်းရွေးချယ်နိုင်ခြင်း</h4>
+            <p>
+              ွေသားအပြင်အခြား(ဘဏ်ကဒ်၊ချက်လက်မှတ်များ၊မိုဘိုင်းအက်ပ်များ)ဖြင့်ငွေပေးချေနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>အထူးဝန်ဆောင်မှုများ</h4>
+            <p>
+              ရင်ခုန်စရာ ခရီးထွက်ဖို့ပဲဖြစ်ဖြစ်၊ အလုပ်ကိစ္စနဲ့ ခရီးထွက်ဖို့ စီစဉ်နေတာပဲဖြစ်ဖြစ်၊
+              သင့်လိုအပ်ချက်အားလုံးကို ဖြည့်ဆည်းပေးသည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">မီနူး</p>
+              <h2 class="section__header">ရရှိနိုင်သောအစားအစာများ</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>ကြက်ဥနှင့်ဘေကွန်</h4>
+                <p>
+                 က်ဥကိုအနည်းငယ်အရင်ကြော်ကာ ဘေကွန်နဲ့တွဲစားနိုင်သည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>လ္ဘက်ရည် သိုမဟုတ် ကော်ဖီ</h4>
+                <p>
+                  ေမြိုနှပ်ကော်ဖီ သိုမဟုတ် ရှမ်းပြည်ဒေသထွက် လ္ဘက်ခြောက်ဖြင့်ဖျော်စပ်ထားသောလ္ဘက်ရည်
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အုတ်ဂျုံဖြင့်ပြုလုပ်ထားသောအစားအစာများ</h4>
+                <p>
+                  ချီယာစေ့ကိုအုတ်ဂျုံထဲတွင်ထည့်သွင်းကာပြုလုပ်ထားသည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အသီး Parfait</h4>
+                <p>
+                  ကျွန်ုပ်တို့၏ Fruit Parfait သည် ကြည်နူးဖွယ်အချက်အပြုတ်လက်ရာတစ်ခုဖြစ်သည်။
+                  လတ်ဆတ်မှုနှင့်အရသာ။
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စတိတ်</h4>
+                <p>
+                  အသားများနူးအိစေရန် ဝိုင်ကိုအသုံးပြုကာချက်ပြုတ်ထားသောအစားအစာ(အမဲသား ၊ကြက်သား၊ဆယ်လမွန်ငါး)
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စပါကတီ</h4>
+                <p>
+                  ခေါက်ဆွဲသုပ်နှင့်အနည်းငယ်ဆင်သော ပြင်သစ်အစားအစာတမျိုး
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="Auream Palace/ch.webp" alt="menu" />
+            <img src="Auream Palace/dinning.webp" alt="menu" />
+            <img src="Auream Palace/a.jpg" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>4.5</h4>
+              <p>Review</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Active Around World</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>3</h4>
+              <p>Star</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ဘန်ဂလို</h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="Auream Palace/view1.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>ဒေသထွက်အစားအစာများမြည်းစမ်းနိုင်ခြင်း</h4>
+            <p>
+             ှမ်းပြည်ဒေသထွက်အစားအစာများမြည်းစမ်းကာ ရိုးရားယဉ်ကျေးမှုများလေ့လားစူးစမ်းနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Auream Palace/view5.jpg" alt="news" />
+
+
+            <h4>ျွန်ုပ်တို၏ဟိုတယ်တွင် စိတ်ရောကိုယ်ပါ အေးချမ်းစွာအပန်းဖြေနိုင်သည်။</h4>
+            <p>
+              spa ကုသမှုများ၊ အထောက်အကူပြုပစ္စည်းများနှင့်စိတ်ကိုလန်းဆန်းစေသည်။
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Auream Palace/view7.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>ဟိုတယ်အနီးအနားတွင်ရှိသောပြင်ပactivities များလည်းပါဝင်ဆင်နွှနိုင်ခြင်း</h4>
+            <p>
+             တောင်တက်ခြင်း၊ စက်ဘီးစီးကာရှူခင်းများခံစားနိုင်သည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Auream Palace</span>
+            </div>
+            <p class="section__description">
+              Auream Palace hotel သည် မန္တလေးတိုင်းဒေသကြီး ပြင်ဦးလွင်မြိုလယ်တွင် တည်ရှိသော ကြယ် ၃ ပွင့်ဟိုတယ်ကြီးဖြစ်သည်။
+              သက်တောင့်သက်သာရှိသော အခန်းပေါင်း ၁၀ ခန်းဝန်းကျင်တွင် အခမဲ့ Wi-Fi၊ စားသောက်ဆိုင်၊ကားပါကင်များပါဝင်ပါသည်။ မြင်ကွင်းကျယ် နေဝင်ချိန် ရှုခင်းများပါရှိသော ခေါင်မိုးပေါ်ရှိ ဘားကြောင့်နာမည်ကြီးသောဟိုတယိတခုဖြစ်သည်။
+              စီးပွားရေးနှင့် အပန်းဖြေခရီးသွားများအတွက် ရွေးချယ်မှုကောင်းဖြစ်ပါသည်။
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>ဝန်ဆောင်မှုများ</h4>
+            <div class="footer__links">
+              <li><a href="#room">အခန်းစိတ်ကြိုက်ပြင်ဆင်ခြင်း။</a></li>
+              <li><a href="#">Virtual Toursများ</a></li>
+              <li><a href="#feature">အထူးဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Concierge ဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Customer ပံ့ပိုးမှု</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>ဆက်သွယ်ရန်</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>ဖုန်းနံပါတ်</h5>
+                  <p>+959 2040608</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>အီးမေးလ်</h5>
+                  <p>info@shwenanhtikeF@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>တည်နေရာ</h5>
+                  <p>ပြင်ဦးလွင်</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Shwe Nan Htike Page Content -->
+    <div id="shwe-nan-htike-page" class="page-content">
+      <!-- Made ID unique for shwe nan htike page header -->
+      <header class="header" id="shwe-nan-htike-header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Shwe Nan Htike/view1.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Shwe Nan Htike</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">Book Now</a>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="Shwe Nan Htike/hotel.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>အဖွဲအစည်း</h4>
+              <p>
+               ဧည့်ဝတ်ကျေပွန်မှု ထူးချွန်ပြီး သင်၏ PerfeUnlockingct ရှိနေစေရန် အာမခံပါသည်။
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Shwe Nan Htike/restaurants2.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>ဇိမ်ခံအခန်းများ</h4>
+              <p>ကျွန်ုပ်တို့၏ ခမ်းနားသော ဇိမ်ခံအခန်းများတွင် တုနှိင်းမဲ့ ဇိမ်ခံမှုကို ခံစားလိုက်ပါ။</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">အကြောင်းအရာ</p>
+            <h2 class="section__header">ကျွန်ုပ်တို့၏နောက်ခံအကြောင်းအရာ</h2>
+            <p class="section__description">
+             Sabai Sabai Foot Massage မှ 17 မိနစ်ခန့် လမ်းလျှောက်ထွက်ရင်း ကြယ် 3 ပွင့်ဟိုတယ် ရွှေနန်းထိုက် ပြင်ဦးလွင်တွင် Wi-Fi နှင့် နေရာအနှံ့ ကားပါကင်ပါရှိသည်။ ဈေးဝယ်ရန်နေရာကောင်းဖြစ်သည့် Ruby Mart ပြင်ဦးလွင်မှ 5 မိနစ်စီးလျှင် အဆင်ပြေစွာတည်ရှိသော ဤပြင်ဦးလွင်ဟိုတယ်တွင် အခန်းပေါင်း 27 ခန်းပါရှိပါသည်။
+            </p>
+            <p class="section__description">
+             အိမ်ရာသည် မန္တလေးအပြည်ပြည်ဆိုင်ရာလေဆိပ်မှ ကီလိုမီတာ ၉၀ ခန့်အကွာတွင်ရှိပြီး လိပ်ပြာပြတိုက်ကဲ့သို့ ယဉ်ကျေးမှုနေရာများမှ ကားဖြင့် ၁၀ မိနစ်ခန့် ဝေးသည်။ ပုဂံမြို့သည် ရွှေနန်းထိုက် ပြင်ဦးလွင်မှ ၄၂ ကီလိုမီတာ ကွာဝေးပြီး ကိုလိုနီခေတ်ဟောင်း အဆောက်အအုံသည် ၅ မိနစ်ခန့် လမ်းလျှောက်သွားနိုင်သည်။ အမျိုးသားကန်တော်ကြီး ရုက္ခဗေဒဥယျာဉ်သည် တည်းခိုခန်းမှ ၃ကီလိုမီတာအကွာတွင် တည်ရှိပါသည်။
+            </p>
+            <p class="section__description">
+             အခန်းများတွင် လသာဆောင်တစ်ခုနှင့် ထိုင်ခုံများပါရှိပြီး သံထည်ပစ္စည်းများနှင့် လေအေးပေးစက်တို့အပြင် မြန်နှုန်းမြင့်အင်တာနက်နှင့် ဂြိုလ်တုချန်နယ်များပါရှိသော မျက်နှာပြင်ပြားတီဗီတို့ပါဝင်သည်။ ၎င်းတို့ကို ဆိုဖာတစ်ခုနှင့် အလုပ်စားပွဲတစ်ခုဖြင့် ခန့်အပ်ထားပြီး ရေခဲသေတ္တာအသေးစားဘားတစ်ခုလည်း ပါဝင်သည်။ ရေချိုးခန်းများတွင် bidet တစ်လုံး၊ ရေချိုးကန်၊ roll-in shower တစ်ခု၊ ဆံပင်လေမှုတ်စက်နှင့် ၀တ်စုံများပါရှိပါသည်။ ဧည့်သည်များသည် စားသောက်ဆိုင်တွင် နံနက်စာစားနိုင်သည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="room__container" id="room">
+        <p class="section__subheader">ပါဝင်သောအခန်းများ</p>
+        <h2 class="section__header">ရွေးချယ်ထားသော အခန်းများ</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="Shwe Nan Htike/room5.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>တစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးတည်းနေထိုင်အပန်းဖြေသူများအတွက်တစ်ယောက်အိပ်အခန်းများ</p>
+              </div>
+              <h3>$399<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/Slduo.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>နှစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>$39<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/Sduo.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>နှစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>$399<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/Sduo2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>နှစ်ယောက်ခန်း</h4>
+                <p>တစ်ဦးထက်ပိုသောမိသားစုနဲ့သူများအတွက်နှစ်​ယောက်ခန်း သိုမဟုတ် သုံးယောက်ခန်းများ</p>
+              </div>
+              <h3>$399<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/room4.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>မိသားစုခန်း </h4>
+                <p>
+                  မိသားစုနဲ့အတူအပန်းဖြေသူများအတွက်မိသားစုအခန်းကြီးများ
+                </p>
+              </div>
+              <h3>$79<span>/night</span></h3>
+            </div>
+          </div>
+            <div class="room__card">
+            <img src="Shwe Nan Htike/room1.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>မိသားစုခန်း </h4>
+                <p>
+                  မိသားစုနဲ့အတူအပန်းဖြေသူများအတွက်မိသားစုအခန်းကြီးများ
+                </p>
+              </div>
+              <h3>$79<span>/night</span></h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">ကျွန်ုပ်တို့၏ဇိမ်ခံနေရာနှင့်တွေ့ဆုံပါ။</h2>
+            <p class="section__description">
+              သက်တောင့်သက်သာနဲ့ သီးသန့် နေထိုင်လိုပါသလား ဒါမှမဟုတ် မိသားစုနဲ့အတူစိတ်ချမ်းမြေ့ဖွယ်နေရာထိုင်ခင်းရှာနေပါသလား။ 
+ကျွန်ုပ်တို့၏ဟိုတယ်မှ နွေးထွေးစွာကြိုဆိုပါ၏။
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">ပါဝင်သောအခန်းကဏ္ဍများ</p>
+        <h2 class="section__header">အဓိကပါဝင်မှုများ</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>ဝန်ဆောင်မှုကောင်းမွန်ခြင်း</h4>
+            <p>
+              ကျွန်ုပ်တို့၏ဟိုတယ်သည် ဝန်ဆောင်မှူကောင်းမွန်ခြင်းကြောင့် များစွာသောဧည့်သည်များထံမှ ကောင်းမွန်သော မှတ်ချက်အများအပြားလက်ခံရရှိထားပါတယ်
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>တိတ်”ဆိတ်”ရှိခြင်း</h4>
+            <p>
+             လူဦးရေထူထပ်သော မြိုလည်ခေါင်တွင်မဟုတ်သောကြောင့် တိတ်တိတ်ဆိတ်ဆိတ်နေလိုသူများအတွက်လည်း ကောင်းမွန်သောရွေးချယ်မှုတခုဖြစ်ပေသည်။
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်း</h4>
+            <p>
+             မြိုနှင့်မနီးမဝေးတွင်တည်ရှိခြင်းကြောင့် မြိုထဲသိုသွားလာရလွယ်ကူခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>အခမဲ့ဘွတ်ကင်ဖျက်သိမ်းခြင်း</h4>
+            <p>
+              အကြောင်းအမျိုးမျိုးကြောင့် ဘွတ်ကင်တင်ထားသည်ကိုဖျက်သိမ်းလိုပါက အခမဲ့ဖျက်သိမ်း၍ရခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>ငွေပေးချေမှုနည်းလမ်းရွေးချယ်နိုင်ခြင်း</h4>
+            <p>
+              ငွေသားအပြင်အခြား(ဘဏ်ကဒ်၊ချက်လက်မှတ်များ၊မိုဘိုင်းအက်ပ်များ)ဖြင့်ငွေပေးချေနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>အထူးဝန်ဆောင်မှုများ</h4>
+            <p>
+             ရင်ခုန်စရာ ခရီးထွက်ဖို့ပဲဖြစ်ဖြစ်၊ အလုပ်ကိစ္စနဲ့ ခရီးထွက်ဖို့ စီစဉ်နေတာပဲဖြစ်ဖြစ်၊
+              သင့်လိုအပ်ချက်အားလုံးကို ဖြည့်ဆည်းပေးသည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">မီနူး</p>
+              <h2 class="section__header">ရရှိနိုင်သောအစားအစာများ</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>ကြက်ဥနှင့်ဘေကွန်</h4>
+                <p>
+                 ကြက်ဥကိုအနည်းငယ်အရင်ကြော်ကာ ဘေကွန်နဲ့တွဲစားနိုင်သည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>လ္ဘက်ရည် သိုမဟုတ် ကော်ဖီ</h4>
+                <p>
+                  မေမြိုနှပ်ကော်ဖီ သိုမဟုတ် ရှမ်းပြည်ဒေသထွက် လ္ဘက်ခြောက်ဖြင့်ဖျော်စပ်ထားသောလ္ဘက်ရည်
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အုတ်ဂျုံဖြင့်ပြုလုပ်ထားသောအစားအစာများ</h4>
+                <p>
+                ချီယာစေ့ကိုအုတ်ဂျုံထဲတွင်ထည့်သွင်းကာပြုလုပ်ထားသည်
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>အသီးparfait</h4>
+                <p>
+                 ကျွန်ုပ်တို့၏ Fruit Parfait သည် ကြည်နူးဖွယ်အချက်အပြုတ်လက်ရာတစ်ခုဖြစ်သည်။
+                  လတ်ဆတ်မှုနှင့်အရသာ။
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စတိတ်</h4>
+                <p>
+                 အသားများနူးအိစေရန် ဝိုင်ကိုအသုံးပြုကာချက်ပြုတ်ထားသောအစားအစာ(အမဲသား ၊ကြက်သား၊ဆယ်လမွန်ငါး)
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>စပါကတီ</h4>
+                <p>
+                 က်ဆွဲသုပ်နှင့်အနည်းငယ်ဆင်သော ပြင်သစ်အစားအစာတမျိုး
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="Shwe Nan Htike/bar1.jpg" alt="menu" />
+            <img src="Shwe Nan Htike/restaurants1.jpg" alt="menu" />
+            <img src="Shwe Nan Htike/restaurants2.jpg" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>4.0</h4>
+              <p>Booked</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Visits</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>3</h4>
+              <p>Star</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header"></h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="Shwe Nan Htike/hall.jpg" alt="news" />
+
+            <h4>ဒေသထွက်အစားအစာများမြည်းစမ်းနိုင်ခြင်း</h4>
+            <p>
+              ရှမ်းပြည်ဒေသထွက်အစားအစာများမြည်းစမ်းကာ ရိုးရားယဉ်ကျေးမှုများလေ့လားစူးစမ်းနိုင်ခြင်း
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Shwe Nan Htike/hot bath tub.jpg" alt="news" />
+
+            <h4>ကျွန်ုပ်တို့၏ဟိုတယ်တွင် စိတ်ရောကိုယ်ပါ အေးချမ်းစွာအပန်းဖြေနိုင်သည်။</h4>
+            <p>
+              spa ကုသမှုများ၊ အထောက်အကူပြုပစ္စည်းများနှင့်စိတ်ကိုလန်းဆန်းစေသည်။
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Shwe Nan Htike/view2.jpg" alt="news" />
+
+            <h4>ဟိုတယ်အနီးအနားတွင်ရှိသောပြင်ပactivitiesactivities များလည်းပါဝင်ဆင်နွှနိုင်ခြင်း</h4>
+            <p>
+             တောင်တက်ခြင်း၊ စက်ဘီးစီးကာရှူခင်းများခံစားနိုင်သည်။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Shwe Nan Htike</span>
+            </div>
+            <p class="section__description">
+             Hotel Shwe Nann Htike သည် မန္တလေးတိုင်းဒေသကြီး ပြင်ဦးလွင်မြိုလယ်တွင် တည်ရှိသော ကြယ် ၃ ပွင့်ဟိုတယ်ကြီးဖြစ်သည်။
+              သက်တောင့်သက်သာရှိသော အခန်းပေါင်း ၁၀ ခန်းဝန်းကျင်တွင် အခမဲ့ Wi-Fi၊ စားသောက်ဆိုင်၊ကားပါကင်များပါဝင်ပါသည်။ မြင်ကွင်းကျယ် နေဝင်ချိန် ရှုခင်းများပါရှိသော ခေါင်မိုးပေါ်ရှိ ဘားကြောင့်နာမည်ကြီးသောဟိုတယိတခုဖြစ်သည်။
+              စီးပွားရေးနှင့် အပန်းဖြေခရီးသွားများအတွက် ရွေးချယ်မှုကောင်းဖြစ်ပါသည်။
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>ဝန်ဆောင်မှုများ</h4>
+            <div class="footer__links">
+              <li><a href="#room">အခန်းစိတ်ကြိုက်ပြင်ဆင်ခြင်း။</a></li>
+              <li><a href="#">Virtual Toursများ</a></li>
+              <li><a href="#feature">အထူးဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Concierge ဝန်ဆောင်မှုများ</a></li>
+              <li><a href="#contact">Customer ပံ့ပိုးမှု</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>ဆက်သွယ်ရန်</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>ဖုန်းနံပါတ်</h5>
+                  <p>+959 2040608</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>အီးမေးလ်</h5>
+                  <p>info@shwenanhtikeF@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>တည်နေရာ</h5>
+                  <p>ပြင်ဦးလွင်</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="Homepage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Homepage UI helpers moved to Homepage.js -->
+</body>
+
+</html>

@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="booking.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert.js"></script>
+  <link rel="stylesheet" href="Homepage.css" />
+  <title>Hotel Booking</title>
+</head>
+
+<body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__content">
+      <div class="page-loader__logo">
+        <span class="page-loader__initial">B</span>
+        <span class="page-loader__name">BookWithUs</span>
+      </div>
+      <div class="page-loader__ring">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <div class="nav__bar">
+      <div class="nav__header">
+        <div class="logo nav__logo">
+          <div>B</div>
+          BookWIthUs
+        </div>
+        <!-- language selector -->
+        <div class="nav__language">
+          <select id="langSelect" class="form-select form-select-sm w-auto">
+            <option value="en">English</option>
+            <option value="my">မြန်မာ</option>
+          </select>
+        </div>
+        <button class="nav__menu__btn" id="menu-btn" type="button" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-toggle" onclick="toggleDropdown()">Select Your Options...<i class="fas fa-caret-down"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#" onclick="showPage('home')"><i class=""></i> Home Page</a>
+          <a href="#" onclick="showPage('pyin-oo-lwin')"><i class=""></i> Hotel Pyin Oo Lwin</a>
+          <a href="#" onclick="showPage('auream-palace')"><i class=""></i> Auream Palace</a>
+          <a href="#" onclick="showPage('shwe-nan-htike')"><i class=""></i> Shwe Nan Htike</a>
+        </div>
+      </div>
+
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#" onclick="showPage('home', event)">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#feature">Feature</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="Login.html">Log Out</a></li>
+        <li style="position:relative;">
+          <!-- Fixed spelling from catagory to category -->
+          <!--<a href="#" id="category-btn">Category</a>-->
+          <div class="dropdown-menu" id="categoryDropdown"
+            style="display:none; position:absolute; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:100;">
+            <div style="position:relative;">
+              <a href="#" id="pool-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                Pool <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="poolDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('pyin-oo-lwin')">Hotel Pyin Oo Lwin</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <a href="#" id="restaurant-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                Restaurant <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="restaurantDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('pyin-oo-lwin')">Hotel Pyin Oo Lwin</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+                <a href="#" onclick="showPage('shwe-nan-htike')">Shwe Nan Htike</a>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <a href="#" id="spa-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                Spa <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="spaDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('shwe-nan-htike')">Hotel Shwe Nan Htike</a>
+                <a href="#" onclick="showPage('auream-palace')">Auream Palace</a>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <a href="#" id="eventspace-btn" style="display:flex;justify-content:space-between;align-items:center;">
+                Event Spaces <span style="font-size:12px;">&#9654;</span>
+              </a>
+              <div class="dropdown-submenu" id="eventspaceDropdown"
+                style="display:none; position:absolute; left:100%; top:0; background:#fff; min-width:180px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <a href="#" onclick="showPage('shwe-nan-htike')">Hotel Shwe Nan Htike</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Floating sidebar user profile/settings button -->
+  <button data-bs-toggle="modal" data-bs-target="#userProfileModal" class="profile-btn sidebar-profile-btn" id="user-profile-btn" title="User Settings">
+    <i class="ri-user-settings-line"></i>
+  </button>
+
+
+  <div class="modal fade" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content shadow-lg rounded-4 border-0" style="padding:0.5rem 0;background:#fff;">
+        <div class="modal-header border-0 pb-0" style="border-radius:1.5rem 1.5rem 0 0; background: linear-gradient(90deg, #667eea 0%, #5a67d8 100%); color: #fff;">
+          <h5 class="modal-title fw-bold" id="userProfileModalLabel">User Settings</h5>
+          <button type="button" class="btn-close btn-close-white" id="closeProfileModal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-4 py-3">
+          <form id="userProfileForm">
+            <div class="mb-3">
+              <label for="profileName" class="form-label fw-semibold">Name</label>
+              <input type="text" class="form-control rounded-3" id="profileName" name="profileName" required>
+            </div>
+            <div class="mb-3">
+              <label for="profileEmail" class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control rounded-3" id="profileEmail" name="profileEmail" required>
+            </div>
+            <div class="mb-3">
+              <label for="profilePassword" class="form-label fw-semibold">New Password</label>
+              <input type="password" class="form-control rounded-3" id="profilePassword" name="profilePassword" placeholder="Leave blank to keep current password">
+            </div>
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-primary rounded-pill fw-bold">Save Changes</button>
+              <button type="button" id="requestAdminBtn" class="btn btn-warning rounded-pill fw-bold">Request Admin Access</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Inline language and link mapping scripts moved to Homepage.js -->
+
+  <!-- Main Content Container -->
+  <div id="main-content">
+
+    <!-- Home Page Content -->
+    <div id="home-page" class="page-content active">
+      <!-- Made ID unique for home page header -->
+      <header class="header" id="home-main"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/view7.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>The Perfect Base For You</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">Book Now</a>
+        </div>
+      </header>
+
+      <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/view2.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Hotel<br />Auream Palace</h1>
+          <a href="#" onclick="showPage('auream-palace')" class="btn">Take a tour</a>
+        </div>
+      </header>
+
+      <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Shwe Nan Htike/view1.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Hotel<br />Shwe Nan Htike</h1>
+          <a href="#" onclick="showPage('shwe-nan-htike')" class="btn">Take a tour</a>
+        </div>
+      </header>
+
+      <header class="header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('hotel pyin oo lwin/view4.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Hotel<br />Pyin Oo Lwin</h1>
+          <a href="#" onclick="showPage('pyin-oo-lwin')" class="btn">Take a tour</a>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/indoor swimming pool.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>Strong Team</h4>
+              <p>
+                Unlocking Hospitality Excellence And Ensures Your Perfect Stay
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Shwe Nan Htike/restaurants2.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>Luxury Room</h4>
+              <p>Experience Unrivaled Luxury at Our Exquisite Luxury Rooms</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">ABOUT US</p>
+            <h2 class="section__header">Discover Our Underground</h2>
+            <p class="section__description">
+              Welcome to a hidden realm of extraordinary accommodations where
+              luxury, comfort, and adventure converge. Our underground hotels
+              offer an unparalleled escape from the ordinary, inviting you to
+              explore a subterranean world of wonders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Meet With Our Luxury Place</h2>
+            <p class="section__description">
+              Whether you're seeking a cozy and exclusive hideaway or an immersive
+              journey beneath the surface, Hotel Miranda promises to be an
+              unforgettable stay, where the depths of comfort and excitement await
+              your arrival.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">FACILITIES</p>
+        <h2 class="section__header">Core Features</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>Have High Rating</h4>
+            <p>
+              We take pride in curating a selection of hotels that consistently
+              receive high ratings and positive reviews.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>Quite Hours</h4>
+            <p>
+              We understand that peace and uninterrupted rest are essential for a
+              rejuvenating experience.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>Best Location</h4>
+            <p>
+              At our hotel booking website, we take pride in offering
+              accommodations in the most prime and sought-after locations.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>Free Cancellation</h4>
+            <p>
+              We understand that travel plans can change unexpectedly, which is
+              why we offer the flexibility of free cancellation.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>Payment Options</h4>
+            <p>
+              Our hotel booking website offers a range of convenient payment
+              options to suit your preferences.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>Special Offers</h4>
+            <p>
+              Whether you're planning a romantic getaway, or a business trip, our
+              carefully curated special offers cater to all your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="footer" id="contact">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>B</div>
+              <span><br />BookWithUs</span>
+            </div>
+            <p class="section__description">
+              "BookWithUs" booking service provides customers with a convenient platform to search,
+              compare, and reserve
+              accommodations based on their preferences and budget. Allows users to browse hotels by
+              location, price,
+              amenities, and ratings, ensuring they find the most suitable option for their stay. The
+              service simplifies
+              the reservation process, offering instant confirmation and secure payment options, making
+              travel planning
+              easier and more reliable.
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Services</h4>
+            <div class="footer__links">
+              <li><a href="#">Online Booking</a></li>
+              <li><a href="#">Concierge Services</a></li>
+              <li><a href="#">Customer Support</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Contact Us</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+95 9962758823</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>Email</h5>
+                  <p>ayeminhan1432@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>Location</h5>
+                  <p>Pyin Oo Lwin</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Pyin Oo Lwin Page Content -->
+    <div id="pyin-oo-lwin-page" class="page-content">
+      <!-- Made ID unique for pyin-oo-lwin page header -->
+      <header class="header" id="pyin-oo-lwin-header" style="background: linear-gradient(rgba(15,26,44,0.5),
+        rgba(15,26,44,0.5)), url('hotel pyin oo lwin/view4.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Hotel Pyin Oo Lwin</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">Book Now</a>
+        </div>
+      </header>
+
+      <section class="about" id="Pabout">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/view2.webp" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>Strong Team</h4>
+              <p>
+                Unlocking Hospitality Excellence And Ensures Your Perfect Stay
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="hotel pyin oo lwin/view4.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>Luxury Room</h4>
+              <p>Experience Unrivaled Luxury at Our Exquisite Luxury Rooms</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">ABOUT US</p>
+            <h2 class="section__header">Discover Our Underground</h2>
+            <p class="section__description">
+              Imitating a small village, Hotel Pyin Oo Lwin is arguably the best place to stay in town, with a high level of modern amenities, warm service and good location just ten minutes from the Kandawgyi Botanical Gardens.
+            </p>
+            <p class="section__description">
+              The 36 teak bungalows are incredibly spacious and decorated in a very traditional, English ‘club house’ style with wood panelling, classic furnishings and lighting. Complimentary WiFi is available, you have your own private veranda, plus there is a heated swimming pool, an in-house restaurant serving Chinese cuisine, bar and free shuttle service.
+            <p class="section__description">
+              We offer a number of private and interest-led tours and activities around Pyin Oo Lwin; please speak to your travel designer about how you wish to pass your time here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="room__container" id="room">
+        <p class="section__subheader">ROOMS</p>
+        <h2 class="section__header">Facillities</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room1.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Single Suite</h4>
+                <p>Well-appointed rooms designed for guests who desire a more.</p>
+              </div>
+              <h3>~$29<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Duo Suite</h4>
+                <p>Well-appointed rooms designed for guests who desire a more.</p>
+              </div>
+              <h3>~$39<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room4.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Triple Suite</h4>
+                <p>Consist of multiple rooms and a common living area.</p>
+              </div>
+              <h3>~$59<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/room3.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Family Suite </h4>
+                <p>
+                  Top-tier accommodations usually on the highest floors of a
+                  hotel.
+                </p>
+              </div>
+              <h3>~$79<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/restaurants3.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Restaurant </h4>
+                <p>
+                  Enjoy stunning views and a relaxing atmosphere at our rooftop bar.
+                </p>
+              </div>
+              <h3> <span></span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="hotel pyin oo lwin/indoor swimming pool.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Swimming pool </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section__container map-section" aria-labelledby="pyin-oo-lwin-map-heading">
+        <div class="map-card" data-map-card="pyin-oo-lwin">
+          <div class="map-card__media">
+            <a id="map-link-pyin-oo-lwin" class="map-card__link" href="#" aria-disabled="true">
+              <img id="map-image-pyin-oo-lwin" class="map-card__image" src="https://via.placeholder.com/1200x720/1a1a1a/ffffff?text=Map+preview+coming+soon" alt="Map preview for Hotel Pyin Oo Lwin" loading="lazy" />
+              <div class="map-card__overlay">
+                <span class="map-card__cta">Open in Google Maps <i class="ri-external-link-line" aria-hidden="true"></i></span>
+              </div>
+            </a>
+          </div>
+          <div class="map-card__body">
+            <h3 id="pyin-oo-lwin-map-heading">Find Us On The Map</h3>
+            <p>Scope out nearby attractions and plan your journey to Hotel Pyin Oo Lwin.</p>
+            <p class="map-card__note" id="map-note-pyin-oo-lwin">Interactive map and Google Maps link coming soon.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Meet With Our Luxury Place</h2>
+            <p class="section__description">
+              Whether you're seeking a cozy and exclusive hideaway or an immersive
+              journey beneath the surface, Hotel Shwe Nan Htike promises to be an
+              unforgettable stay, where the depths of comfort and excitement await
+              your arrival.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">FACILITIES</p>
+        <h2 class="section__header">Core Features</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>Have High Rating</h4>
+            <p>
+              We take pride in curating a selection of hotels that consistently
+              receive high ratings and positive reviews.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>Quite Hours</h4>
+            <p>
+              We understand that peace and uninterrupted rest are essential for a
+              rejuvenating experience.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>Best Location</h4>
+            <p>
+              At our hotel booking website, we take pride in offering
+              accommodations in the most prime and sought-after locations.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>Free Cancellation</h4>
+            <p>
+              We understand that travel plans can change unexpectedly, which is
+              why we offer the flexibility of free cancellation.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>Payment Options</h4>
+            <p>
+              Our hotel booking website offers a range of convenient payment
+              options to suit your preferences.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>Special Offers</h4>
+            <p>
+              Whether you're planning a romantic getaway, or a business trip, our
+              carefully curated special offers cater to all your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">MENU</p>
+              <h2 class="section__header">Our Food Menu</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Eggs & Bacon</h4>
+                <p>
+                  It is a culinary innovation that puts a unique spin on the
+                  beloved breakfast combination.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Tea or Coffee</h4>
+                <p>
+                  A classic choice for your daily dose of comfort and calmness.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Chia Oatmeal</h4>
+                <p>
+                  Our Chia Oatmeal is a wholesome nutrient-packed breakfast
+                  delight.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Fruit Parfait</h4>
+                <p>
+                  Our Fruit Parfait is a delightful culinary masterpiece of
+                  freshness and flavor.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Steak</h4>
+                <p>
+                  Our Steak is a special menu.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Spaghetti</h4>
+                <p>
+                  Our Spaghetti is a masterpiece that celebrates rich.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="hotel pyin oo lwin/bar1.webp" alt="menu" />
+            <img src="hotel pyin oo lwin/restaurants1.webp" alt="menu" />
+            <img src="hotel pyin oo lwin/restaurants2.webp" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>3.9</h4>
+              <p>Booked</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Visits</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>02k</h4>
+              <p>Categories Served</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Views</h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view3.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>Exploring Local Culinary Gems: A Foodie's Guide.</h4>
+            <p>
+              Join Emily as she takes you on a gastronomic adventure through the
+              neighborhood surrounding our hotel.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view7.webp" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>Balancing Mind, Body, and Soul at Our Hotel.</h4>
+            <p>
+              Discover holistic spa treatments, fitness facilities, and
+              mindfulness practices that will leave you feeling refreshed.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="hotel pyin oo lwin/view4.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>Exploring Outdoor Activities Near Our Hotel.</h4>
+            <p>
+              From hiking and biking trails to water sports and wildlife
+              encounters, she highlights ways to experience nature's wonders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Pyin Oo Lwin</span>
+            </div>
+            <p class="section__description">
+              Hotel Pyin Oo Lwin is a 3-star hotel located in the heart of Pyin Oo Lwin, Mandalay Region.
+              Featuring around 45 comfortable rooms, it provides modern amenities such as free Wi-Fi,
+              restaurant,
+              parking, and airport shuttle services. The hotel is well-known for its rooftop bar with
+              panoramic sunset
+              views, making it a popular choice for both business and leisure travelers.
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Services</h4>
+            <div class="footer__links">
+              <li><a href="#Pabout">About Us</a></li>
+              <li><a href="#">Online Booking</a></li>
+              <li><a href="#">Virtual Tours</a></li>
+              <li><a href="#feature">Special Offers</a></li>
+              <li><a href="#contact">Concierge Services</a></li>
+              <li><a href="#contact">Customer Support</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Contact Us</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+959 444445188, 444445688</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>Email</h5>
+                  <p></p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>Location</h5>
+                  <p>Pyin Oo Lwin</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Auream Palace Page Content -->
+    <div id="auream-palace-page" class="page-content">
+      <!-- Made ID unique for auream palace page header -->
+      <header class="header" id="auream-palace-header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Auream Palace/auream.webp') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Auream Palace</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">Book Now</a>
+        </div>
+      </header>
+
+      <section class="about" id="Aabout">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="Auream Palace/view7.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>Strong Team</h4>
+              <p>
+                Unlocking Hospitality Excellence And Ensures Your Perfect Stay
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Auream Palace/view8.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>Luxury Room</h4>
+              <p>Experience Unrivaled Luxury at Our Exquisite Luxury Rooms</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">ABOUT US</p>
+            <h2 class="section__header">Discover Our Underground</h2>
+            <p class="section__description">
+              Located in the heart of Myanmar, 67 km east of Mandalay, in the highlands of the Mandalay Mountains, the city has a cool climate and was used as a summer residence by the British until the Second World War.
+              choice for both business and leisure travelers.
+            </p>
+            <p class="section__description">
+              At an altitude of 1070 meters, the Aureum Palace Hotel & Resort, Pyin Oo Lwin is not only a hotel with garden bungalows that offer all the famous Aureum comfort, but also the completely restored residence of the former British governor of Burma. Where once officers, lords, and ladies sought refuge from the summer heat, conferences, weddings, and business meetings take place today in a nostalgic colonial flair. Even the journey from the busy town of Mandalay is worth the visit. There is only one direction while on the serpents to Pyin Oo Lwin: upwards.
+            </p>
+            <p class="section__description">
+             Enjoy the elegance and splendor of the past and traditional luxury in a unique colonial style where you can experience the ambiance of a century gone while enjoying the modern facilities of luxurious bungalows.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!--<section class="our-story">
+        <div class="section__container">
+          <h2 class="section__header">OUR STORY</h2>
+          <div class="our-story__content">
+            <p class="section__description">
+              The main tourist destination in Myanmar is Bagan, capital of the first Myanmar Empire; one of the richest archaeological sites in South-east Asia. Situated on the eastern bank of the Ayeyawaddy River, it is located in the dry central plains of the country.
+            </p>
+            <p class="section__description">
+              The Magic of Bagan has inspired visitors to Myanmar for nearly 1000 years. Bagan covers an area of 42 sq km containing over 2000 well-preserved pagodas and temples of the 11<sup>th</sup>-13<sup>th</sup> century. An earthquake on 08 July 1975 severely damaged more than half of the structures and destroyed many of them. Bagan’s importance lies in its heritage rather than its present and is the most ideal destination for tourists to visit regardless of the time of the year.
+            </p>
+            <p class="section__description">
+              It does not experience a rainy season and has the perfect climate that enables tourists to discover and explore the ancient city with ease all year round. The region is also famous for lacquer ware.
+            </p>
+          </div>
+        </div>
+      </section>-->
+      <section class="room__container" id="room">
+        <p class="section__subheader">ROOMS</p>
+        <h2 class="section__header">Facillities</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="Auream Palace/room1.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Single Suite</h4>
+                <p>1 single bed and 1 double bed</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$19<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/king bed.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Superior Single</h4>
+                <p>1 king bed</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$29<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/duo.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Duo Suite</h4>
+                <p>2 single beds and 1 double bed</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$39<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/family.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Superior Double</h4>
+                <p>1 double bed</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$59<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Auream Palace/Alfamily.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Family Suite </h4>
+                <p>2 double beds</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$79<span>/night</span></h3>
+            </div>
+          </div>
+                    <div class="room__card">
+            <img src="Auream Palace/Appol.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Pool</h4>
+                <p>Nature view</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section__container map-section" aria-labelledby="auream-palace-map-heading">
+        <div class="map-card" data-map-card="auream-palace">
+          <div class="map-card__media">
+            <a id="map-link-auream-palace" class="map-card__link" href="#" aria-disabled="true">
+              <img id="map-image-auream-palace" class="map-card__image" src="https://via.placeholder.com/1200x720/1a1a1a/ffffff?text=Map+preview+coming+soon" alt="Map preview for Auream Palace" loading="lazy" />
+              <div class="map-card__overlay">
+                <span class="map-card__cta">Open in Google Maps <i class="ri-external-link-line" aria-hidden="true"></i></span>
+              </div>
+            </a>
+          </div>
+          <div class="map-card__body">
+            <h3 id="auream-palace-map-heading">Find Us On The Map</h3>
+            <p>Preview Auream Palace’s neighborhood and nearby highlights before you arrive.</p>
+            <p class="map-card__note" id="map-note-auream-palace">Interactive map and Google Maps link coming soon.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Meet With Our Luxury Place</h2>
+            <p class="section__description">
+              Whether you're seeking a cozy and exclusive hideaway or an immersive
+              journey beneath the surface, Hotel Shwe Nan Htike promises to be an
+              unforgettable stay, where the depths of comfort and excitement await
+              your arrival.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">FACILITIES</p>
+        <h2 class="section__header">Core Features</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>Have High Rating</h4>
+            <p>
+              We take pride in curating a selection of hotels that consistently
+              receive high ratings and positive reviews.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>Quite Hours</h4>
+            <p>
+              We understand that peace and uninterrupted rest are essential for a
+              rejuvenating experience.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>Best Location</h4>
+            <p>
+              At our hotel booking website, we take pride in offering
+              accommodations in the most prime and sought-after locations.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>Free Cancellation</h4>
+            <p>
+              We understand that travel plans can change unexpectedly, which is
+              why we offer the flexibility of free cancellation.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>Payment Options</h4>
+            <p>
+              Our hotel booking website offers a range of convenient payment
+              options to suit your preferences.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>Special Offers</h4>
+            <p>
+              Whether you're planning a romantic getaway, or a business trip, our
+              carefully curated special offers cater to all your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">MENU</p>
+              <h2 class="section__header">Our Food Menu</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Eggs & Bacon</h4>
+                <p>
+                  It is a culinary innovation that puts a unique spin on the
+                  beloved breakfast combination.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Tea or Coffee</h4>
+                <p>
+                  A classic choice for your daily dose of comfort and calmness.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Chia Oatmeal</h4>
+                <p>
+                  Our Chia Oatmeal is a wholesome nutrient-packed breakfast
+                  delight.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Fruit Parfait</h4>
+                <p>
+                  Our Fruit Parfait is a delightful culinary masterpiece of
+                  freshness and flavor.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Steak</h4>
+                <p>
+                  Our Steak is a special menu.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Spaghetti</h4>
+                <p>
+                  Our  Spaghetti is a masterpiece that celebrates rich.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="Auream Palace/ch.webp" alt="menu" />
+            <img src="Auream Palace/dinning.webp" alt="menu" />
+            <img src="Auream Palace/a.jpg" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>4.5</h4>
+              <p>Booked</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Visits</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>3</h4>
+              <p>Star</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Bangalo</h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="Auream Palace/view1.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>Exploring Local Culinary Gems: A Foodie's Guide.</h4>
+            <p>
+              Join Emily as she takes you on a gastronomic adventure through the
+              neighborhood surrounding our hotel.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Auream Palace/view5.jpg" alt="news" />
+
+
+            <h4>Balancing Mind, Body, and Soul at Our Hotel.</h4>
+            <p>
+              Discover holistic spa treatments, fitness facilities, and
+              mindfulness practices that will leave you feeling refreshed.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Auream Palace/view7.jpg" alt="news" />
+            <div class="news__card__title">
+
+            </div>
+            <h4>Exploring Outdoor Activities Near Our Hotel.</h4>
+            <p>
+              From hiking and biking trails to water sports and wildlife
+              encounters, she highlights ways to experience nature's wonders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Auream Palace</span>
+            </div>
+            <p class="section__description">
+              Auream Palace hotel is a 3-star hotel located in the heart of Pyin Oo Lwin, Mandalay Region.
+              Featuring around 45 comfortable rooms, it provides modern amenities such as free Wi-Fi,
+              restaurant,
+              parking, and airport shuttle services. The hotel is well-known for its rooftop bar with
+              panoramic sunset
+              views, making it a popular choice for both business and leisure travelers.
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://www.youtube.com/@aureumpalacehotels"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#https://www.instagram.com/aureumpalacehotelsandresorts?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#https://www.facebook.com/aureumpalacehotelsandresortsmyanmar/"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#https://www.linkedin.com/company/htoo-hospitality-hh/"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Services</h4>
+            <div class="footer__links">
+              <li><a href="#Aabout">About Us</a></li>
+              <li><a href="#room">Room Customization</a></li>
+              <li><a href="#">Virtual Tours</a></li>
+              <li><a href="#feature">Special Offers</a></li>
+              <li><a href="#contact">Concierge Services</a></li>
+              <li><a href="#contact">Customer Support</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Contact Us</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+959 940096000, 880593248-50</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>Email</h5>
+                  <p>SAlES@HTOOHOSPITALITY.COM.MM</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>Location</h5>
+                  <p>Pyin Oo Lwin</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- Shwe Nan Htike Page Content -->
+    <div id="shwe-nan-htike-page" class="page-content">
+      <!-- Made ID unique for shwe nan htike page header -->
+
+      <header class="header" id="shwe-nan-htike-header"
+        style="background: linear-gradient(rgba(15,26,44,0.5),rgba(15,26,44,0.5)), url('Shwe Nan Htike/view1.jpg') center/cover no-repeat;">
+        <div class="section__container header__container">
+          <p class="section__subheader">ABOUT US</p>
+          <h1>Shwe Nan Htike</h1>
+          <a href="#" onclick="handleBookNow()" class="btn">Book Now</a>
+        </div>
+      </header>
+
+      <section class="about" id="Sabout">
+        <div class="section__container about__container">
+          <div class="about__grid">
+            <div class="about__image">
+              <img src="Shwe Nan Htike/hotel.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-user-line"></i></span>
+              <h4>Strong Team</h4>
+              <p>
+                Unlocking Hospitality Excellence And Ensures Your Perfect Stay
+              </p>
+            </div>
+            <div class="about__image">
+              <img src="Shwe Nan Htike/restaurants2.jpg" alt="about" />
+            </div>
+            <div class="about__card">
+              <span><i class="ri-calendar-check-line"></i></span>
+              <h4>Luxury Room</h4>
+              <p>Experience Unrivaled Luxury at Our Exquisite Luxury Rooms</p>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="section__subheader">ABOUT US</p>
+            <h2 class="section__header">Discover Our Underground</h2>
+            <p class="section__description">
+              Situated 17 minutes' stroll from Sabai Sabai Foot Massage, the 3-star Hotel Shwe Nann Htike Pyin Oo Lwin features Wi-Fi throughout the property and parking on site. Conveniently located a 5-minute ride from Ruby Mart Pyin Oo Lwin, which is a great place to shop, this Pyin Oo Lwin hotel provides 27 rooms.
+            </p>
+
+            <p class="section__description">
+             The property is about 90 km from Mandalay International airport and 10 minutes by car from such cultural venues as Butterfly Museum. Bagan is 42 km from the Shwe Nann Htike Pyin Oo Lwin, while Old Colonial Building is a 5-minute stroll away. National Kandawgyi Botanical Gardens is situated 3 km from the accommodation.
+            </p>
+            <p class="section__description">
+              The rooms comprise a balcony and a seating area complete with ironing facilities and air conditioning, as well as high-speed internet and a flat-screen TV with satellite channels. They are appointed with a sofa and a work desk, and also feature a mini fridge bar. Bathrooms come with a bidet, a bathtub, and a roll-in shower, along with hair dryers and dressing gowns.
+
+              Guests can have breakfast in the restaurant.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="room__container" id="room">
+        <p class="section__subheader">ROOMS</p>
+        <h2 class="section__header">Facillities</h2>
+        <div class="room__grid">
+          <div class="room__card">
+            <img src="Shwe Nan Htike/room5.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Single Suite</h4>
+                <p>Room size: 28 m²/301 ft²</p>
+                <p>1 double bed</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$29<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/Slduo.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Superior Twin</h4>
+                <p>1 double bed</p>
+                <p>Mountain view</p>
+              </div>
+              <h3>~$39<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/Sduo.webp" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Duo Suite </h4>
+                <p>1 double bed or 2 single beds</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$49<span>/night</span></h3>
+            </div>
+          </div>
+           <div class="room__card">
+            <img src="Shwe Nan Htike/Sduo2.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Duo Suite </h4>
+                <p>1 double bed or 2 single beds</p>
+                <p>Nature view</p>
+              </div>
+              <h3>~$49<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/room4.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Family Room</h4>
+                <p>1 single bed and 1 double bed</p>
+                <p>City view</p>
+              </div>
+              <h3>~$79<span>/night</span></h3>
+            </div>
+          </div>
+          <div class="room__card">
+            <img src="Shwe Nan Htike/room1.jpg" alt="room" />
+            <div class="room__card__details">
+              <div>
+                <h4>Royal Family Room</h4>
+                <p>1 double bed and 1 ingle bed</p>
+                <p>Mountain view</p>
+              </div>
+              <h3>~$100<span>/night</span></h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section__container map-section" aria-labelledby="shwe-nan-htike-map-heading">
+        <div class="map-card" data-map-card="shwe-nan-htike">
+          <div class="map-card__media">
+            <a id="map-link-shwe-nan-htike" class="map-card__link" href="#" aria-disabled="true">
+              <img id="map-image-shwe-nan-htike" class="map-card__image" src="" alt="Map preview for Shwe Nan Htike" loading="lazy" />
+              <div class="map-card__overlay">
+                <span class="map-card__cta">Open in Google Maps <i class="ri-external-link-line" aria-hidden="true"></i></span>
+              </div>
+            </a>
+          </div>
+          <div class="map-card__body">
+            <h3 id="shwe-nan-htike-map-heading">Find Us On The Map</h3>
+            <p>See what surrounds Shwe Nan Htike and tailor your travel itinerary.</p>
+            <p class="map-card__note" id="map-note-shwe-nan-htike">Interactive map and Google Maps link coming soon.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="intro">
+        <div class="section__container intro__container">
+          <div class="intro__cotent">
+            <p class="section__subheader"></p>
+            <h2 class="section__header">Meet With Our Luxury Place</h2>
+            <p class="section__description">
+              Whether you're seeking a cozy and exclusive hideaway or an immersive
+              journey beneath the surface, Hotel Shwe Nan Htike promises to be an
+              unforgettable stay, where the depths of comfort and excitement await
+              your arrival.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section__container feature__container" id="feature">
+        <p class="section__subheader">FACILITIES</p>
+        <h2 class="section__header">Core Features</h2>
+        <div class="feature__grid">
+          <div class="feature__card">
+            <span><i class="ri-thumb-up-line"></i></span>
+            <h4>Have High Rating</h4>
+            <p>
+              We take pride in curating a selection of hotels that consistently
+              receive high ratings and positive reviews.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-time-line"></i></span>
+            <h4>Quite Hours</h4>
+            <p>
+              We understand that peace and uninterrupted rest are essential for a
+              rejuvenating experience.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <h4>Best Location</h4>
+            <p>
+              At our hotel booking website, we take pride in offering
+              accommodations in the most prime and sought-after locations.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-close-circle-line"></i></span>
+            <h4>Free Cancellation</h4>
+            <p>
+              We understand that travel plans can change unexpectedly, which is
+              why we offer the flexibility of free cancellation.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <h4>Payment Options</h4>
+            <p>
+              Our hotel booking website offers a range of convenient payment
+              options to suit your preferences.
+            </p>
+          </div>
+          <div class="feature__card">
+            <span><i class="ri-coupon-line"></i></span>
+            <h4>Special Offers</h4>
+            <p>
+              Whether you're planning a romantic getaway, or a business trip, our
+              carefully curated special offers cater to all your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">MENU</p>
+              <h2 class="section__header">Our Food Menu</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="food/egg&bacon.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Eggs & Bacon</h4>
+                <p>
+                  It is a culinary innovation that puts a unique spin on the
+                  beloved breakfast combination.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/tea.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Tea or Coffee</h4>
+                <p>
+                  A classic choice for your daily dose of comfort and calmness.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/chia oatmeal.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Chia Oatmeal</h4>
+                <p>
+                  Our Chia Oatmeal is a wholesome nutrient-packed breakfast
+                  delight.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/fruit.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Fruit Parfait</h4>
+                <p>
+                  Our Fruit Parfait is a delightful culinary masterpiece of
+                  freshness and flavor.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/steak.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Steak</h4>
+                <p>
+                  Our Steak is a special menu.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="food/sp.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Spaghetti</h4>
+                <p>
+                  Our Spaghetti is a masterpiece that celebrates rich.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="Shwe Nan Htike/bar1.jpg" alt="menu" />
+            <img src="Shwe Nan Htike/restaurants1.jpg" alt="menu" />
+            <img src="Shwe Nan Htike/restaurants2.jpg" alt="menu" />
+          </div>
+          <ul class="menu__banner">
+            <li>
+              <span><i class="ri-file-text-line"></i></span>
+              <h4>4.0</h4>
+              <p>Review</p>
+            </li>
+            <li>
+              <span><i class="ri-user-line"></i></span>
+              <h4>10k</h4>
+              <p>Active Around World</p>
+            </li>
+            <li>
+              <span><i class="ri-function-line"></i></span>
+              <h4>3</h4>
+              <p>Star</p>
+            </li>
+            <li>
+              <span><i class="ri-lightbulb-flash-line"></i></span>
+              <h4>100M</h4>
+              <p>Ideas Raised Funds</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section__container news__container" id="news">
+        <div class="news__header">
+          <div>
+            <p class="section__subheader"></p>
+            <h2 class="section__header"></h2>
+          </div>
+          <div class="section__nav">
+            <span><i class="ri-arrow-left-line"></i></span>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="news__grid">
+          <div class="news__card">
+            <img src="Shwe Nan Htike/hall.jpg" alt="news" />
+
+            <h4>Exploring Local Culinary Gems: A Foodie's Guide.</h4>
+            <p>
+              Join Emily as she takes you on a gastronomic adventure through the
+              neighborhood surrounding our hotel.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Shwe Nan Htike/hot bath tub.jpg" alt="news" />
+
+            <h4>Balancing Mind, Body, and Soul at Our Hotel.</h4>
+            <p>
+              Discover holistic spa treatments, fitness facilities, and
+              mindfulness practices that will leave you feeling refreshed.
+            </p>
+          </div>
+          <div class="news__card">
+            <img src="Shwe Nan Htike/view2.jpg" alt="news" />
+
+            <h4>Exploring Outdoor Activities Near Our Hotel.</h4>
+            <p>
+              From hiking and biking trails to water sports and wildlife
+              encounters, she highlights ways to experience nature's wonders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />Shwe Nan Htike</span>
+            </div>
+            <p class="section__description">
+              Hotel Shwe Nann Htike is a 3-star hotel located in the heart of Pyin Oo Lwin, Mandalay
+              Region.
+              Featuring around 45 comfortable rooms, it provides modern amenities such as free Wi-Fi,
+              restaurant,
+              parking, and airport shuttle services. The hotel is well-known for its rooftop bar with
+              panoramic sunset
+              views, making it a popular choice for both business and leisure travelers.
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://youtu.be/1X5utVcIm4Y?si=cdPNS4I_J_G743Eg"><i class="ri-youtube-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </li>
+              <li>
+                <a href="#https://www.facebook.com/hotelshwenannhtike/"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Services</h4>
+            <div class="footer__links">
+              <li><a href="#Sabout">About Us</a></li>
+              <li><a href="#room">Room Customization</a></li>
+              <li><a href="#">Virtual Tours</a></li>
+              <li><a href="#feature">Special Offers</a></li>
+              <li><a href="#contact">Concierge Services</a></li>
+              <li><a href="#contact">Customer Support</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Contact Us</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+959 2040608</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>Email</h5>
+                  <p>info@shwenanhtikeF@gmail.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>Location</h5>
+                  <p>Pyin Oo Lwin</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="js/apiClient.js"></script>
+  <script src="Homepage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Inline UI helpers moved to Homepage.js; pricing logic centralized to booking.js -->
+</body>
+
+</html>

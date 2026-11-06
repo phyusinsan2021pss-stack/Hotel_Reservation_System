@@ -1,0 +1,39 @@
+{
+  "name": "hotel-backend",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "mongo:up": "docker-compose up -d",
+    "mongo:down": "docker-compose down",
+    "mongo:logs": "docker-compose logs -f mongo",
+    "mongo:status": "docker-compose ps",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
+    "seed": "node src/setupCollections.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^7.0.0",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^5.1.6",
+    "stripe": "^12.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "mongodb-memory-server": "^8.16.1",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3",
+    "swagger-ui-express": "^4.6.3"
+  }
+}

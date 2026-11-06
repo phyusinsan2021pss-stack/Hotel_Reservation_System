@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="fontAwsome.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="sweetalert.js"></script>
+    <script src="bootstrap.bundle.js"></script>
+    <title>Login Page</title>
+</head>
+
+            <body>
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <div class="container-fluid">
+                        <img src="miit.jpg" width="60" class="rounded-circle" alt="">
+                        <a href="entry.html" class="mx-4 text-white navbar-brand">MIIT ဟိုတယ် ကြိုတင်စာရင်း</a>
+                        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myMenu">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Language selector -->
+                        <div class="d-flex align-items-center ms-auto">
+                            <select id="langSelect" class="form-select form-select-sm w-auto">
+                                <option value="my" selected>မြန်မာ</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+
+                        <div class="navbar-collapose" id="myMenu">
+                            <div>
+                                <button id="preview-btn" class="btn btn-outline-primary w-100">ဧည့်သည်အဖြစ် ကြည့်ရှုရန်</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="container" id="container">
+                    <div class="form-container">
+                        <!-- Login Form -->
+                        <div class="sign-in">
+                            <h2>အကောင့်ဝင်ရန်</h2>
+                            <form class="login-form">
+                                <input required type="email" placeholder="အီးမေးလ်" class="mb-3 form-control">
+                                <input required type="password" placeholder="စကားဝှက်" class="mb-3 form-control">
+                                <button type="submit" class="btn btn-primary w-100 butt">အကောင့်ဝင်ခြင်း</button>
+                            </form>
+                        </div>
+
+                        <!-- Registration Form -->
+                        <div class="sign-up">
+                            <h2>အကောင့်အသစ်ဖွင့်ရန်</h2>
+                            <form class="reg-form">
+                                <input required name="fullname" type="text" placeholder="အမည်" class="mb-3 form-control">
+                                <input required name="mobile" type="number" placeholder="ဖုန်းနံပါတ်" class="mb-3 form-control">
+                                <input required name="email" type="email" placeholder="အီးမေးလ်" class="mb-3 form-control">
+                                <input required name="password" type="password" placeholder="စကားဝှက်" class="mb-3 form-control">
+                                <label class="form-label">အကောင့် အမျိုးအစား</label>
+                                <select name="role" class="form-select mb-3">
+                                    <option value="user" selected>အသုံးပြုသူ</option>
+                                    <option value="admin">admin (တောင်းဆိုသည်)</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary w-100 butt">submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Panel -->
+                    <div class="toggle-container" id="toggle-container">
+                        <div>
+                            <h2 id="toggle-title">မင်္ဂလာပါ၊ ကြိုဆိုပါသည်!</h2>
+                            <p id="toggle-desc">အကောင့်မရှိသေးပါသလား?</p>
+                            <button id="toggle-btn">အကောင့်အသစ်ဖွင့်ရန်</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inline language scripts moved to login.js -->
+                
+                <script src="js/apiClient.js"></script>
+                <script src="login.js"></script>
+                <!-- Inline link-mapping moved to login.js -->
+            </body>
+
+            </html><!DOCTYPE html>

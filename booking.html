@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE Hotel Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="Homepage.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <!-- Added main navigation bar with hotel branding and navigation links -->
+    <nav>
+        <div class="nav__bar">
+            <div class="nav__header">
+                <div class="logo nav__logo">
+                    <div>B</div>
+                    BookWithUs
+                </div>
+                <div style="margin-left:auto; margin-right:16px;">
+                    <select id="langSelect" class="form-select form-select-sm w-auto">
+                        <option value="en">English</option>
+                        <option value="my">မြန်မာ</option>
+                    </select>
+                </div>
+                <div class="nav__menu__btn" id="menu-btn">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+
+            <ul class="nav__links" id="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="Homepage.html">About</a></li>
+                <li><a href="Homepage.html">Feature</a></li>
+                <li><a href="Homepage.html">Contact</a></li>
+                <li><a href="Login.html">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Inline scripts moved to booking.js -->
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header" id="user-info">
+            <h2>LUXE Hotels</h2>
+        </div>
+        <ul class="sidebar-menu nav no-print nav-tabs">
+            <li class="nav-item">
+                <a href="#booking" class="nav-link active tab-btn" data-bs-toggle="tab">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#rooms" class="nav-link tab-btn" data-bs-toggle="tab">
+                    <i class="fas fa-hotel"></i>
+                    <span>Available Rooms</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="tab-content">
+            <div class="tab-pane active search-pane container-fluid mt-3" id="booking">
+                <div class="row no-print my-5">
+                    <!-- Stats Cards -->
+                </div>
+                <div class="card recent-bookings">
+                    <div class="card-header">
+                        <h1>All Booking Data</h1>
+                        <button data-bs-toggle="modal" data-bs-target="#registration-modal"
+                            class="nav-link btn action-btn b-book-btn">
+                            <i class="fas fa-plus"></i> New Booking
+                        </button>
+                        <div class="col-md-4 text-center">
+                            <button class="btn action-btn print-btn">
+                                <i class="fas fa-print me-2"></i>Print
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle table-compact">
+                            <thead>
+                                <tr>
+                                    <th class="no-print">Sr</th>
+                                    <th class="text-nowrap">Hotel</th>
+                                    <th class="text-nowrap">RoomNo</th>
+                                    <th class="text-nowrap">Room Type</th>
+                                    <th class="text-nowrap">Room Class</th>
+                                    <th class="text-nowrap">CheckIn</th>
+                                    <th class="text-nowrap">CheckOut</th>
+                                    <th class="text-nowrap">People</th>
+                                    <th class="text-nowrap">Price</th>
+                                    <th class="text-nowrap">Payment Method</th>
+                                    <th class="text-nowrap no-print">Status</th>
+                                    <th class="no-print text-nowrap">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="booking-list">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane search-pane container-fluid mt-3" id="rooms">
+                <div class="row no-print my-5">
+                    <div class="page-header">
+                        <br> <br>
+                        <h1>Room Availability</h1>
+                        <div class="date-display">
+                            <i class="fas fa-calendar-day"></i>
+                            <span id="current-date"></span>
+                        </div>
+                    </div>
+
+                    <!-- Room Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="icon-box bg-primary">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalRoomsCount">0</h3>
+                                <p>Total Rooms</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="availableRoomsCount">0</h3>
+                                <p>Available Rooms</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-warning">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="bookedRoomsCount">0</h3>
+                                <p>Booked Rooms</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-box bg-info">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Status Grid -->
+                <div class="card recent-bookings">
+                    <div class="card-header">
+                        <h1>Room Status Overview</h1>
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <!-- Added hotel filter dropdown -->
+                            <div class="d-flex align-items-center gap-2">
+                                <label for="hotelFilter" class="form-label mb-0 fw-bold">Hotel:</label>
+                                <select id="hotelFilter" class="form-select" style="min-width: 200px;">
+                                    <option value="">All Hotels</option>
+                                </select>
+                            </div>
+                            <div class="search-bar" style="flex: 1; max-width: 300px;">
+                                <i class="fas fa-search"></i>
+                                <input type="search" id="roomSearchInput" class="search-input"
+                                    placeholder="Search by hotel name or room number...">
+                            </div>
+                            <div class="d-flex gap-3">
+                                <span class="badge bg-success">Available</span>
+                                <span class="badge bg-primary">Booked</span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="card-body">
+                                            <div class="date-filters mt-3 p-3 bg-light rounded">
+                                                <h5 class="mb-3">Check Room Availability by Date</h5>
+                                                <div class="row g-3 align-items-end">
+                                                    <div class="col-md-3">
+                                                        <label for="checkInFilter" class="form-label">Check-in Date</label>
+                                                        <input type="date" id="checkInFilter" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label for="checkOutFilter" class="form-label">Check-out Date</label>
+                                                        <input type="date" id="checkOutFilter" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Actions</label>
+                                                        <div class="d-flex gap-2 flex-wrap">
+                                                            <button id="applyDateFilter" class="btn btn-primary">Apply Dates</button>
+                                                            <button id="clearDateFilter" class="btn btn-secondary">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="roomGrid" class="row g-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal animate__animated animate__zoomIn" id="registration-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Booking Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="body-body p-4">
+                    <form class="booking-form">
+                        <div class="row g-3">
+                            <div class="col-md-6 form-field">
+                                <input name="fullname" type="text" placeholder="Full Name" class="form-control" required>
+                                <div class="field-error" data-error-for="fullname"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="hotel" class="form-control" required>
+                                    <option value="">Select Hotel</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="roomNo" type="text" class="form-control" placeholder="Room No" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="totalPeople" type="number" placeholder="Total People" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Room Type</label>
+                                <input name="roomType" type="text" class="form-control" placeholder="Auto-filled" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Room Class</label>
+                                <input name="roomClass" type="text" class="form-control" placeholder="Auto-filled" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Check In Date</label>
+                                <input name="checkInDate" type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Check Out Date</label>
+                                <input name="checkOutDate" type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="price" type="number" placeholder="Price" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6 form-field">
+                                <input name="mobile" type="tel" inputmode="numeric" maxlength="11" autocomplete="tel" placeholder="Phone Number" class="form-control">
+                                <div class="field-error" data-error-for="mobile"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="paymentMethod" class="form-control" required>
+                                    <option value="">Select Payment Method</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end justify-content-end">
+                                <button type="submit" id="bookingSubmitBtn" class="btn btn-primary w-100">Submit</button>
+                            </div>
+                        </div>
+
+                        <!-- Scripts -->
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                        <!-- Inline scripts moved to booking.js -->
+                        <script src="js/apiClient.js"></script>
+                        <script src="booking.js"></script>
+</body>
+
+</html>
